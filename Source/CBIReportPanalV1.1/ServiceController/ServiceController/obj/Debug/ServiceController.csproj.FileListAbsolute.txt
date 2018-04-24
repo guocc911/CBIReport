@@ -1,0 +1,10 @@
+D:\泛博制动\CBIReportPanal20150407\ServiceController\ServiceController\bin\Debug\ServiceController.exe.config
+D:\泛博制动\CBIReportPanal20150407\ServiceController\ServiceController\bin\Debug\ServiceController.exe
+D:\泛博制动\CBIReportPanal20150407\ServiceController\ServiceController\bin\Debug\ServiceController.pdb
+D:\泛博制动\CBIReportPanal20150407\ServiceController\ServiceController\obj\Debug\ResolveAssemblyReference.cache
+D:\泛博制动\CBIReportPanal20150407\ServiceController\ServiceController\obj\Debug\ServiceController.MainForm.resources
+D:\泛博制动\CBIReportPanal20150407\ServiceController\ServiceController\obj\Debug\ServiceController.Properties.Resources.resources
+D:\泛博制动\CBIReportPanal20150407\ServiceController\ServiceController\obj\Debug\GenerateResource.read.1.tlog
+D:\泛博制动\CBIReportPanal20150407\ServiceController\ServiceController\obj\Debug\GenerateResource.write.1.tlog
+D:\泛博制动\CBIReportPanal20150407\ServiceController\ServiceController\obj\Debug\ServiceController.exe
+D:\泛博制动\CBIReportPanal20150407\ServiceController\ServiceController\obj\Debug\ServiceController.pdb

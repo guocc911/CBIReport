@@ -1,0 +1,323 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F1F333B3-5743-40C5-8061-8CC35101FAA5}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CBIReportPanal</RootNamespace>
+    <AssemblyName>CBIReportPanal</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>CBIIcon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Management" />
+    <Reference Include="System.ServiceProcess" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Plan\About.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Plan\About.Designer.cs">
+      <DependentUpon>About.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Config\ExttTimeConfigForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Config\ExttTimeConfigForm.Designer.cs">
+      <DependentUpon>ExttTimeConfigForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Config\NoticeConfigForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Config\NoticeConfigForm.Designer.cs">
+      <DependentUpon>NoticeConfigForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Config\PlanInfoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Config\PlanInfoForm.Designer.cs">
+      <DependentUpon>PlanInfoForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Config\PLineOPSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Config\PLineOPSetting.Designer.cs">
+      <DependentUpon>PLineOPSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Config\ProductionCfgForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Config\ProductionCfgForm.Designer.cs">
+      <DependentUpon>ProductionCfgForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Config\ProductionInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Config\ProductionInfo.Designer.cs">
+      <DependentUpon>ProductionInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Config\UserCfgForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Config\UserCfgForm.Designer.cs">
+      <DependentUpon>UserCfgForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Config\ModifyOP.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Config\ModifyOP.Designer.cs">
+      <DependentUpon>ModifyOP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataAcp.cs" />
+    <Compile Include="ConfigForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConfigForm.Designer.cs">
+      <DependentUpon>ConfigForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PlaninfoItemForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PlaninfoItemForm.Designer.cs">
+      <DependentUpon>PlaninfoItemForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Plan\BrakePlanAppointments.cs" />
+    <Compile Include="PLinePlanForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLinePlanForm.Designer.cs">
+      <DependentUpon>PLinePlanForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportClientForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportClientForm.Designer.cs">
+      <DependentUpon>ReportClientForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReportClientServiceControl.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLineReportPanel.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLineReportPanel.Designer.cs">
+      <DependentUpon>PLineReportPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WindowsServiceMonitor.cs" />
+    <Compile Include="ReportClientDBUtils.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <EmbeddedResource Include="Plan\About.resx">
+      <DependentUpon>About.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConfigForm.resx">
+      <DependentUpon>ConfigForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Config\ExttTimeConfigForm.resx">
+      <DependentUpon>ExttTimeConfigForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Config\NoticeConfigForm.resx">
+      <DependentUpon>NoticeConfigForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Config\PlanInfoForm.resx">
+      <DependentUpon>PlanInfoForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Config\PLineOPSetting.resx">
+      <DependentUpon>PLineOPSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Config\ProductionCfgForm.resx">
+      <DependentUpon>ProductionCfgForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Config\ProductionInfo.resx">
+      <DependentUpon>ProductionInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Config\UserCfgForm.resx">
+      <DependentUpon>UserCfgForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Config\ModifyOP.resx">
+      <DependentUpon>ModifyOP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PlaninfoItemForm.en-US.resx">
+      <DependentUpon>PlaninfoItemForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PlaninfoItemForm.resx">
+      <DependentUpon>PlaninfoItemForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLinePlanForm.resx">
+      <DependentUpon>PLinePlanForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportClientForm.resx">
+      <DependentUpon>ReportClientForm.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="PLineReportPanel.resx">
+      <DependentUpon>PLineReportPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="app.config" />
+    <EmbeddedResource Include="cbireport.db">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\COM\COMM.csproj">
+      <Project>{67672095-7784-4E12-B245-E5C910364E00}</Project>
+      <Name>COMM</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DAL\DAL.csproj">
+      <Project>{5A2DF0DF-D0AE-4260-B9C9-A7F9C879A59E}</Project>
+      <Name>DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DataAcquisition\DataAcquisition.csproj">
+      <Project>{BEDC32BA-7637-4F24-899B-A6B77458AC90}</Project>
+      <Name>DataAcquisition</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MDL\MDL.csproj">
+      <Project>{6E98D26B-CBD3-4A06-A800-6A56AD0AF7FF}</Project>
+      <Name>MDL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ScheduleControls\ScheduleControls.csproj">
+      <Project>{50A9C32A-2246-420C-9388-7B1728D0BA8F}</Project>
+      <Name>ScheduleControls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SQLiteDAL\SQLiteDAL.csproj">
+      <Project>{046861E6-E807-4894-9E93-6B0020A1DEEC}</Project>
+      <Name>SQLiteDAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ZYReportControl\ZYReportControl.csproj">
+      <Project>{DEAA04DC-B873-40ED-908E-1542135F7A69}</Project>
+      <Name>ZYReportControl</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
+    <EmbeddedResource Include="CBIIcon.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <Content Include="Icon1.ico" />
+    <None Include="image\access.png" />
+    <Content Include="image\CBI.png" />
+    <Content Include="image\log.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 Client Profile %28x86 和 x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

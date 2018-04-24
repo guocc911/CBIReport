@@ -1,0 +1,171 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{F31477BA-AF98-485F-8B36-0843CAA8EBBF}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>ProductLineCtrl</RootNamespace>
+    <AssemblyName>ProductLineCtrl</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApplicationUtils.cs" />
+    <Compile Include="LineCtrlForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LineCtrlForm.Designer.cs">
+      <DependentUpon>LineCtrlForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AssemblyReportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AssemblyReportForm.designer.cs">
+      <DependentUpon>AssemblyReportForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AssemblyReportFormTimer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CalendarView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CalendarView.Designer.cs">
+      <DependentUpon>CalendarView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Config\CSVImportForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Config\CSVImportForm.Designer.cs">
+      <DependentUpon>CSVImportForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Config\DataBaseConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Config\DataBaseConfig.designer.cs">
+      <DependentUpon>DataBaseConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PlineInfo.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TitleInfoCtrl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TitleInfoCtrl.Designer.cs">
+      <DependentUpon>TitleInfoCtrl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Utils\CommUitls.cs" />
+    <Compile Include="Utils\CSVHelper.cs" />
+    <Compile Include="Utils\DBInfo.cs" />
+    <Compile Include="Utils\WorkSpace.cs" />
+    <EmbeddedResource Include="LineCtrlForm.resx">
+      <DependentUpon>LineCtrlForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AssemblyReportForm.resx">
+      <DependentUpon>AssemblyReportForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CalendarView.resx">
+      <DependentUpon>CalendarView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Config\CSVImportForm.resx">
+      <DependentUpon>CSVImportForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Config\DataBaseConfig.resx">
+      <DependentUpon>DataBaseConfig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="TitleInfoCtrl.resx">
+      <DependentUpon>TitleInfoCtrl.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="ct.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="staion.csv">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="chartt.ico" />
+    <Content Include="img\log.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\COMM\COMM.csproj">
+      <Project>{97A9D9F0-A58D-4D51-9602-F10BF28E32F6}</Project>
+      <Name>COMM</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DAL\DAL.csproj">
+      <Project>{5A2DF0DF-D0AE-4260-B9C9-A7F9C879A59E}</Project>
+      <Name>DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MDL\MDL.csproj">
+      <Project>{6E98D26B-CBD3-4A06-A800-6A56AD0AF7FF}</Project>
+      <Name>MDL</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Root>
+  <APP>
+	<!--<DBConnstr>Database=cbiassembly;Data Source=10.176.68.5;User Id=admin;Password=123456;charset=gb2312;pooling=true</DBConnstr>-->
+    <DBConnstr>Database=cbiassembly;Data Source=localhost;User Id=root;Password=123456;charset=gb2312;pooling=true</DBConnstr>
+    <!--<DBConnstr>Database=cbireportpanel;Data Source=10.176.65.245;User Id=cbi;Password=cbi@2013;charset=gb2312;pooling=true</DBConnstr>-->
+    <MxOPCServer OPCIP="127.0.0.1" OPCName="Mitsubishi.MXOPC.6" GroupName="MxL1" />
+    <!--<OPCServer OPCIP="10.176.65.214" OPCName="KEPware.KEPServerEx.V4" GroupName="CBIL1"/>-->
+    <RexOPCServer OPCIP="127.0.0.1" OPCName="CoDeSys.OPC.02" GroupName="RexrothL1" />
+    <!--<IOLogik IP="10.176.65.215" Port="502" ConnTimeOut="5000" Password="" />
+    <LineID>L1</LineID>-->
+    <IOLogik IP="10.176.65.235" Port="502" ConnTimeOut="5000" Password="" />
+    <LineID>1</LineID>
+    <LineNames>1,2,3,MGU</LineNames>
+    <PlanTimeSpan>10</PlanTimeSpan>
+    <TempRange>12</TempRange>
+    <TempDateTime>8:30</TempDateTime>
+	<UpdateTime>20</UpdateTime>
+    <OP>18,18</OP>
+    <!--是否检验流水号的有效性和完整性-->
+    <DataCheckOut>0</DataCheckOut>
+    <!--自动写流水号，仅在不扫描条码调试时使用-->
+    <SysDebug>0</SysDebug>
+  
+  </APP>
+  <L1>
+    <PrinterList>
+    </PrinterList>
+    <ScannerList>
+    </ScannerList>
+    <PLCDataList>
+      <!--ST430 数据 D509 脉冲 M250-->
+	  <PLCData ItemID="ST440.TICKUNIT2" IsKey="true" StationID="ST440" DBFieldName="tickunit2" DBFieldType="1" DecPoint="" Remark="产出的脉冲数2" />
+      <PLCData ItemID="ST440.TICKUNIT" IsKey="true" StationID="ST440" DBFieldName="tickunit" DBFieldType="1" DecPoint="" Remark="产出的脉冲数" />
+      <PLCData ItemID="ST440.PLCCOUNT" IsKey="true" StationID="ST440" DBFieldName="plccount" DBFieldType="" DecPoint="" Remark="产线的数据综合511" />
+      <!--<PLCData ItemID="ST440.ST430_BarCode" IsKey="true" StationID="ST430" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST440.ST430_PassCon" IsKey="false" StationID="ST430" DBFieldName="" DBFieldType="" DecPoint="" Remark="ST430扫描枪放行条件" />-->
+      <!--ST440-->
+      <PLCData ItemID="ST440.BarCode" IsKey="true" StationID="ST440" DBFieldName="brakecode" DBFieldType="2" DecPoint="" Remark="支架流水号brakecode" />
+      <PLCData ItemID="ST440.BracketCode" IsKey="false" StationID="ST440" DBFieldName="bracketcode" DBFieldType="2" DecPoint="" Remark="总成号" />
+      <PLCData ItemID="ST440.ProductType" IsKey="false" StationID="ST440" DBFieldName="" DBFieldType="" DecPoint="" Remark="产品类型" />
+      <PLCData ItemID="ST440.Marking" IsKey="false" StationID="ST440" DBFieldName="" DBFieldType="" DecPoint="" Remark="控制刻蚀机工作" />
+      <PLCData ItemID="ST440.ST290_PF" IsKey="false" StationID="ST440" DBFieldName="st290" DBFieldType="1" DecPoint="" Remark="290工位PF值" />
+      <PLCData ItemID="ST440.ST300_PF" IsKey="false" StationID="ST440" DBFieldName="st300" DBFieldType="1" DecPoint="" Remark="300工位PF值" />
+      <PLCData ItemID="ST440.ST320_PF" IsKey="false" StationID="ST440" DBFieldName="st320" DBFieldType="1" DecPoint="" Remark="320工位PF值" />
+      <PLCData ItemID="ST440.ST360_PF" IsKey="false" StationID="ST440" DBFieldName="st360" DBFieldType="1" DecPoint="" Remark="360工位PF值" />
+      <PLCData ItemID="ST440.ST361_PF" IsKey="false" StationID="ST440" DBFieldName="st361" DBFieldType="1" DecPoint="" Remark="361工位PF值" />
+      <PLCData ItemID="ST440.ST410_PF" IsKey="false" StationID="ST440" DBFieldName="st410" DBFieldType="1" DecPoint="" Remark="410工位PF值" />
+      <PLCData ItemID="ST440.ST430_PF" IsKey="false" StationID="ST440" DBFieldName="st430" DBFieldType="1" DecPoint="" Remark="430工位PF值" />
+      <PLCData ItemID="ST440.ST440_PF" IsKey="false" StationID="ST440" DBFieldName="st440" DBFieldType="1" DecPoint="" Remark="440工位PF值" />
+      <PLCData ItemID="ST440.Complete" IsKey="false" StationID="ST440" DBFieldName="" DBFieldType="" DecPoint="" Remark="工件已进入工位，流水号与PF值已读取完成" />
+      <PLCData ItemID="ST440.EnableTraceSys" IsKey="false" StationID="ST440" DBFieldName="" DBFieldType="" DecPoint="" Remark="启用标识" />
+      <PLCData ItemID="ST440.AlarmBarCodeCheckErr" IsKey="false" StationID="ST440" DBFieldName="" DBFieldType="" DecPoint="" Remark="" />
+      <PLCData ItemID="ST440.AlarmResultNOK" IsKey="false" StationID="ST440" DBFieldName="" DBFieldType="" DecPoint="" Remark="" />
+      <!--<PLCData ItemID="ST440.ST440_PF" IsKey="false" StationID="ST440" DBFieldName="st440" DBFieldType="1" DecPoint="" Remark="440工位PF值" />-->
+    </PLCDataList>
+    <RexrothDataList>
+    </RexrothDataList>
+  </L1>
+  <L2>
+    <PrinterList>
+    </PrinterList>
+    <ScannerList>
+    </ScannerList>
+    <PLCDataList>
+      <!--ST400-->
+      <PLCData ItemID="ST400.TICKUNIT2" IsKey="true" StationID="ST400" DBFieldName="tickunit2" DBFieldType="1" DecPoint="" Remark="产出的脉冲数2" />
+	  <PLCData ItemID="ST400.TICKUNIT" IsKey="true" StationID="ST400" DBFieldName="tickunit" DBFieldType="1" DecPoint="" Remark="产出的脉冲数" />
+      <PLCData ItemID="ST400.PLCCOUNT" IsKey="true" StationID="ST400" DBFieldName="plccount" DBFieldType="" DecPoint="" Remark="产线的数据综合511" />
+      <PLCData ItemID="ST400.BarCode" IsKey="true" StationID="ST400" DBFieldName="barcode" DBFieldType="" DecPoint="" Remark="支架流水号brakecode" />
+      <PLCData ItemID="ST400.BracketCode" IsKey="false" StationID="ST400" DBFieldName="barcketcode" DBFieldType="2" DecPoint="" Remark="总成号" />
+      <PLCData ItemID="ST400.PLCBracket" IsKey="false" StationID="ST400" DBFieldName="" DBFieldType="" DecPoint="" Remark="PLC的刻蚀码" />
+      <PLCData ItemID="ST400.ProductType" IsKey="true" StationID="ST400" DBFieldName="producttype" DBFieldType="1" DecPoint="" Remark="产品类型" />
+      <PLCData ItemID="ST400.Marking" IsKey="false" StationID="ST400" DBFieldName="" DBFieldType="" DecPoint="" Remark="控制刻蚀机工作" />
+      <PLCData ItemID="ST400.ST230_PF" IsKey="false" StationID="ST400" DBFieldName="st230" DBFieldType="1" DecPoint="" Remark="230工位PF值" />
+      <PLCData ItemID="ST400.ST240_PF" IsKey="false" StationID="ST400" DBFieldName="st240" DBFieldType="1" DecPoint="" Remark="240工位PF值" />
+      <PLCData ItemID="ST400.ST250_PF" IsKey="false" StationID="ST400" DBFieldName="st250" DBFieldType="1" DecPoint="" Remark="250工位PF值" />
+      <PLCData ItemID="ST400.ST260_PF" IsKey="false" StationID="ST400" DBFieldName="st260" DBFieldType="1" DecPoint="" Remark="260工位PF值" />
+      <PLCData ItemID="ST400.ST290_PF" IsKey="false" StationID="ST400" DBFieldName="st290" DBFieldType="1" DecPoint="" Remark="290工位PF值" />
+      <PLCData ItemID="ST400.ST310_PF" IsKey="false" StationID="ST400" DBFieldName="st310" DBFieldType="1" DecPoint="" Remark="310工位PF值" />
+      <PLCData ItemID="ST400.ST320_PF" IsKey="false" StationID="ST400" DBFieldName="st320" DBFieldType="1" DecPoint="" Remark="320工位PF值" />
+      <PLCData ItemID="ST400.ST361_PF" IsKey="false" StationID="ST400" DBFieldName="st361" DBFieldType="1" DecPoint="" Remark="361工位PF值" />
+      <PLCData ItemID="ST400.ST370_PF" IsKey="false" StationID="ST400" DBFieldName="st370" DBFieldType="1" DecPoint="" Remark="370工位PF值" />
+      <PLCData ItemID="ST400.ST390_PF" IsKey="false" StationID="ST400" DBFieldName="st390" DBFieldType="1" DecPoint="" Remark="390工位PF值" />
+      <PLCData ItemID="ST400.Complete" IsKey="false" StationID="ST400" DBFieldName="" DBFieldType="" DecPoint="" Remark="工件已进入工位，流水号与PF值已读取完成" />
+      <PLCData ItemID="ST400.ControlProductIn" IsKey="false" StationID="ST400" DBFieldName="" DBFieldType="" DecPoint="" Remark="ST440扫描完条码后控制挡点下降，让设备进入工位" />
+      <PLCData ItemID="ST400.EnableTraceSys" IsKey="false" StationID="ST400" DBFieldName="" DBFieldType="" DecPoint="" Remark="" />
+      <PLCData ItemID="ST400.AlarmBarCodeCheckErr" IsKey="false" StationID="ST400" DBFieldName="" DBFieldType="" DecPoint="" Remark="" />
+      <PLCData ItemID="ST400.AlarmReadMarkingErr" IsKey="false" StationID="ST400" DBFieldName="" DBFieldType="" DecPoint="" Remark="" />
+      <PLCData ItemID="ST400.AlarmWriteMarkingErr" IsKey="false" StationID="ST400" DBFieldName="" DBFieldType="" DecPoint="" Remark="" />
+      <PLCData ItemID="ST400.AlarmResultNOK" IsKey="false" StationID="ST400" DBFieldName="" DBFieldType="" DecPoint="" Remark="" />
+    </PLCDataList>
+    <RexrothDataList>
+    </RexrothDataList>
+  </L2>
+</Root>

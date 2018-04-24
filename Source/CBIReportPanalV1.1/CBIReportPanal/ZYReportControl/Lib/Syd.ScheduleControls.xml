@@ -1,0 +1,884 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Syd.ScheduleControls</name>
+    </assembly>
+    <members>
+        <member name="T:Syd.ScheduleControls.Data.Appointment">
+            <summary>
+            Holds appointment data.
+            </summary>
+        </member>
+        <member name="P:Syd.ScheduleControls.Data.Appointment.Subject">
+            <summary>
+            Gets or sets the subject.
+            </summary>
+            <value>
+            The subject.
+            </value>
+        </member>
+        <member name="P:Syd.ScheduleControls.Data.Appointment.DateStart">
+            <summary>
+            Gets or sets the start date of the appointment.
+            </summary>
+            <value>
+            The start date of the appointment.
+            </value>
+        </member>
+        <member name="P:Syd.ScheduleControls.Data.Appointment.DateEnd">
+            <summary>
+            Gets or sets the end date of the appointment.
+            </summary>
+            <value>
+            The end date of the appointment.
+            </value>
+        </member>
+        <member name="P:Syd.ScheduleControls.Data.Appointment.ColorBlockBrush">
+            <summary>
+            Gets or sets the color block brush for the appointment border.
+            </summary>
+            <value>
+            The color block brush.
+            </value>
+        </member>
+        <member name="T:Syd.ScheduleControls.Region.DayRegion">
+            <summary>
+            A region on the screen that displays a day.
+            </summary>
+        </member>
+        <member name="T:Syd.ScheduleControls.Region.BaseRegion">
+            <summary>
+            A region on the screen that will be painted.
+            </summary>
+        </member>
+        <member name="T:Syd.ScheduleControls.Region.IRegion">
+            <summary>
+            Interface defining the properties of a region on the screen of something that is painted in 
+            the OnPaint event.
+            </summary>
+        </member>
+        <member name="P:Syd.ScheduleControls.Region.IRegion.Bounds">
+            <summary>
+            Gets or sets the bounds of this region.
+            </summary>
+            <value>
+            The bounds.
+            </value>
+        </member>
+        <member name="T:Syd.ScheduleControls.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Syd.ScheduleControls.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Syd.ScheduleControls.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="T:Syd.ScheduleControls.Renderer.StringFormats">
+            <summary>
+            String formats.
+            </summary>
+        </member>
+        <member name="F:Syd.ScheduleControls.Renderer.StringFormats.Left">
+            <summary>String format to left.</summary>
+        </member>
+        <member name="F:Syd.ScheduleControls.Renderer.StringFormats.Right">
+            <summary>String format to right.</summary>
+        </member>
+        <member name="F:Syd.ScheduleControls.Renderer.StringFormats.Center">
+            <summary>String format to center.</summary>
+        </member>
+        <member name="M:Syd.ScheduleControls.Renderer.IRenderer.DrawBox(System.Drawing.Graphics,System.Drawing.Font,System.Drawing.Rectangle,System.Drawing.Brush)">
+            <summary>
+            draws a box and allows you to override the background colour
+            </summary>
+        </member>
+        <member name="M:Syd.ScheduleControls.Renderer.IRenderer.DrawBox(System.Drawing.Graphics,System.Drawing.Font,System.Drawing.Rectangle)">
+            <summary>
+            Draw a box with background colour, text and optional border.
+            </summary>
+        </member>
+        <member name="M:Syd.ScheduleControls.Events.AppointmentMoveEventArgs.#ctor">
+            <summary>
+            Prevents a default instance of the <see cref="T:Syd.ScheduleControls.Events.AppointmentMoveEventArgs"/> class from being created.
+            </summary>
+        </member>
+        <member name="M:Syd.ScheduleControls.Events.AppointmentMoveEventArgs.#ctor(Syd.ScheduleControls.Data.Appointment,System.DateTime,Syd.ScheduleControls.BaseScheduleControl)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Syd.ScheduleControls.Events.AppointmentMoveEventArgs"/> class.
+            </summary>
+            <param name="appointment">The appointment.</param>
+            <param name="newDate">The new date.</param>
+            <param name="control">The control.</param>
+        </member>
+        <member name="P:Syd.ScheduleControls.Events.AppointmentMoveEventArgs.Control">
+            <summary>
+            Gets or sets the control.
+            </summary>
+            <value>
+            The control.
+            </value>
+        </member>
+        <member name="P:Syd.ScheduleControls.Events.AppointmentMoveEventArgs.Appointment">
+            <summary>
+            Gets or sets the appointment.
+            </summary>
+            <value>
+            The appointment.
+            </value>
+        </member>
+        <member name="P:Syd.ScheduleControls.Events.AppointmentMoveEventArgs.NewDate">
+            <summary>
+            Gets or sets the new date.
+            </summary>
+            <value>
+            The new date.
+            </value>
+        </member>
+        <member name="T:Syd.ScheduleControls.BaseScheduleControl">
+            <summary>
+            The BaseScheduleControl defines properties common to the three schedule controls. 
+            </summary>
+        </member>
+        <member name="F:Syd.ScheduleControls.BaseScheduleControl.components">
+            <summary> 
+            Required designer variable.
+            </summary>
+        </member>
+        <member name="M:Syd.ScheduleControls.BaseScheduleControl.Dispose(System.Boolean)">
+            <summary> 
+            Clean up any resources being used.
+            </summary>
+            <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        </member>
+        <member name="M:Syd.ScheduleControls.BaseScheduleControl.InitializeComponent">
+            <summary> 
+            Required method for Designer support - do not modify 
+            the contents of this method with the code editor.
+            </summary>
+        </member>
+        <member name="M:Syd.ScheduleControls.BaseScheduleControl.RefreshAppointments">
+            <summary>
+            The appointment list or an appointment in it has changed,
+            so we need to refresh everything from the underlying
+            grid control to the boundaries of the appointments.
+            </summary>
+        </member>
+        <member name="M:Syd.ScheduleControls.BaseScheduleControl.#ctor">
+            <summary>
+            Initialise a new control instance and set up the appointment grid.
+            </summary>
+        </member>
+        <member name="M:Syd.ScheduleControls.BaseScheduleControl.grid_SelectionChanged(System.Object,System.EventArgs)">
+            <summary>
+            Handles the SelectionChanged event of the grid control.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">The <see cref="T:System.EventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:Syd.ScheduleControls.BaseScheduleControl.grid_KeyDown(System.Object,System.Windows.Forms.KeyEventArgs)">
+            <summary>
+            Handles the KeyDown event of the grid control.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="keyEvent">The <see cref="T:System.Windows.Forms.KeyEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:Syd.ScheduleControls.BaseScheduleControl.FireAppointmentEdit(Syd.ScheduleControls.Data.Appointment)">
+            <summary>
+            Fires the appointment edit.
+            </summary>
+            <param name="appointment">The appointment.</param>
+        </member>
+        <member name="M:Syd.ScheduleControls.BaseScheduleControl.OnMouseDoubleClick(System.Windows.Forms.MouseEventArgs)">
+            <summary>
+            Raises the <see cref="E:System.Windows.Forms.Control.MouseDoubleClick"/> event.
+            </summary>
+            <param name="e">An <see cref="T:System.Windows.Forms.MouseEventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:Syd.ScheduleControls.BaseScheduleControl.OnMouseClick(System.Windows.Forms.MouseEventArgs)">
+            <summary>
+            Raises the <see cref="E:System.Windows.Forms.Control.MouseClick"/> event.
+            </summary>
+            <param name="e">An <see cref="T:System.Windows.Forms.MouseEventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:Syd.ScheduleControls.BaseScheduleControl.ScheduleControl_MouseHover(System.Object,System.EventArgs)">
+            <summary>
+            Doesn't work
+            </summary>
+        </member>
+        <member name="M:Syd.ScheduleControls.BaseScheduleControl.ScheduleControl_MouseDown(System.Object,System.Windows.Forms.MouseEventArgs)">
+            <summary>
+            Handles the MouseDown event of the current control.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">The <see cref="T:System.Windows.Forms.MouseEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:Syd.ScheduleControls.BaseScheduleControl.ScheduleControl_MouseMove(System.Object,System.Windows.Forms.MouseEventArgs)">
+            <summary>
+            Handles the MouseMove event of the current control.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">The <see cref="T:System.Windows.Forms.MouseEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:Syd.ScheduleControls.BaseScheduleControl.ScheduleControl_MouseUp(System.Object,System.Windows.Forms.MouseEventArgs)">
+            <summary>
+            Handles the MouseUp event of the current control.
+            </summary>
+            <param name="sender">The source of the event.</param>
+            <param name="e">The <see cref="T:System.Windows.Forms.MouseEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="M:Syd.ScheduleControls.BaseScheduleControl.HitTestAppointment(System.Int32,System.Int32)">
+            <summary>
+            Perform a test on a mouse click location and see what appointment
+            region they hit.
+            </summary>
+            <param name="x">The x coordinate of the click.</param>
+            <param name="y">The y coordinate of the click.</param>
+            <returns>The BaseRegion that was clicked</returns>
+        </member>
+        <member name="M:Syd.ScheduleControls.BaseScheduleControl.HitTestDayRegion(System.Int32,System.Int32)">
+            <summary>
+            Perform a test on a mouse click location and see what day
+            region they hit.
+            </summary>
+            <param name="x">The x coordinate of the click.</param>
+            <param name="y">The y coordinate of the click.</param>
+            <returns>The BaseRegion that was clicked</returns>
+        </member>
+        <member name="M:Syd.ScheduleControls.BaseScheduleControl.HitTestDateTime(System.Int32,System.Int32)">
+            <summary>
+            Perform a test on a mouse click location and see what date
+            time value they hit.
+            </summary>
+            <param name="x">The x coordinate of the click.</param>
+            <param name="y">The y coordinate of the click.</param>
+            <returns>The DateTime that was clicked</returns>
+        </member>
+        <member name="M:Syd.ScheduleControls.BaseScheduleControl.DragDropEnd(Syd.ScheduleControls.Data.Appointment,System.Int32,System.Int32)">
+            <summary>
+            Notify child form that the drag drop event has ended.
+            </summary>
+            <param name="appointment">The dragged appointment</param>
+            <param name="x">The x coordinate it was dropped on.</param>
+            <param name="y">The y coordinate it was dropped on.</param>
+        </member>
+        <member name="M:Syd.ScheduleControls.BaseScheduleControl.FireAppointmentMove(Syd.ScheduleControls.Data.Appointment,System.DateTime)">
+            <summary>
+            Fires the appointment move.
+            </summary>
+            <param name="appointment">The appointment.</param>
+            <param name="newDate">The new date.</param>
+        </member>
+        <member name="M:Syd.ScheduleControls.BaseScheduleControl.FireAppointmentNew(System.DateTime)">
+            <summary>
+            Fires the appointment new.
+            </summary>
+            <param name="newApptDate">The new appt date.</param>
+        </member>
+        <member name="M:Syd.ScheduleControls.BaseScheduleControl.CalculateTimeSlotBounds(System.Drawing.Graphics)">
+            <summary>
+            Calculate the time slot bounds. This works out the size and
+            shape that days will take up on the screen. This method
+            is called from OnPaint only when the property BoundsValidTimeSlot
+            is set to false (this property is set to false in cases such as 
+            when the control has been resized or the date shown has 
+            changed).
+            </summary>
+        </member>
+        <member name="M:Syd.ScheduleControls.BaseScheduleControl.CalculateAppointmentBounds(System.Drawing.Graphics)">
+            <summary>
+            Calculate the appointment bounds. This works out the size and
+            shape that the appointments will take up on the screen,
+            and handles any other calculations such as overlaps. This method
+            is called from OnPaint only when the property BoundsValidAppointment
+            is set to false (this property is set to false in cases such as 
+            when the control has been resized or the appointment list has 
+            changed).
+            </summary>
+        </member>
+        <member name="M:Syd.ScheduleControls.BaseScheduleControl.BeginInit">
+            <summary>
+            Signals the object that initialization is starting.
+            </summary>
+        </member>
+        <member name="M:Syd.ScheduleControls.BaseScheduleControl.EndInit">
+            <summary>
+            Signals the object that initialization is complete.
+            </summary>
+        </member>
+        <member name="M:Syd.ScheduleControls.BaseScheduleControl.OnSizeChanged(System.EventArgs)">
+            <summary>
+            Raises the <see cref="E:System.Windows.Forms.Control.SizeChanged"/> event.
+            </summary>
+            <param name="e">An <see cref="T:System.EventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="M:Syd.ScheduleControls.BaseScheduleControl.OnPaint(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            Raises the <see cref="E:System.Windows.Forms.Control.Paint"/> event.
+            </summary>
+            <param name="e">A <see cref="T:System.Windows.Forms.PaintEventArgs"/> that contains the event data.</param>
+        </member>
+        <member name="P:Syd.ScheduleControls.BaseScheduleControl.AppointmentGrid">
+            <summary>
+            Gets the appointment grid.
+            </summary>
+        </member>
+        <member name="P:Syd.ScheduleControls.BaseScheduleControl.IsDragging">
+            <summary>
+            Gets or sets a value indicating whether this instance is dragging an appointment.
+            </summary>
+            <value>
+            	<c>true</c> if this instance is dragging; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Syd.ScheduleControls.BaseScheduleControl.IsInitialising">
+            <summary>
+            Gets or sets a value indicating whether this instance is initialising.
+            </summary>
+            <value>
+            	<c>true</c> if this instance is initialising; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Syd.ScheduleControls.BaseScheduleControl.Appointments">
+            <summary>
+            Gets or sets the appointments.
+            </summary>
+            <value>
+            The appointments.
+            </value>
+        </member>
+        <member name="P:Syd.ScheduleControls.BaseScheduleControl.LastRightMouseClickCoords">
+            <summary>
+            Gets or sets the last right mouse click coordinates.
+            </summary>
+            <value>
+            The last right mouse click coordinates.
+            </value>
+        </member>
+        <member name="E:Syd.ScheduleControls.BaseScheduleControl.AppointmentCreate">
+            <summary>
+            Occurs when [appointment create].
+            </summary>
+        </member>
+        <member name="E:Syd.ScheduleControls.BaseScheduleControl.AppointmentMove">
+            <summary>
+            Occurs when [appointment move].
+            </summary>
+        </member>
+        <member name="E:Syd.ScheduleControls.BaseScheduleControl.AppointmentEdit">
+            <summary>
+            Occurs when [appointment edit].
+            </summary>
+        </member>
+        <member name="P:Syd.ScheduleControls.BaseScheduleControl.BoundsValidTimeSlot">
+            <summary>
+            Are the bounds values for the time slots still valid. 
+            If the control is resized, this is false.
+            </summary>
+        </member>
+        <member name="P:Syd.ScheduleControls.BaseScheduleControl.BoundsValidAppointment">
+            <summary>
+            Are the bounds values for the appointments still valid. 
+            If the control is resized, or the appointments are changed,
+            this is false.
+            </summary>
+        </member>
+        <member name="T:Syd.ScheduleControls.Grid.HiddenGrid">
+            <summary>
+            Used as a hidden control to handle keyboard access.
+            </summary>
+        </member>
+        <member name="M:Syd.ScheduleControls.Grid.HiddenGrid.OnPaintBackground(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            Paints the background of the control.
+            </summary>
+            <param name="pevent">A <see cref="T:System.Windows.Forms.PaintEventArgs"/> that contains information about the control to paint.</param>
+        </member>
+        <member name="M:Syd.ScheduleControls.Grid.HiddenGrid.OnPaint(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            Raises the <see cref="E:System.Windows.Forms.Control.Paint"/> event.
+            </summary>
+            <param name="e">A <see cref="T:System.Windows.Forms.PaintEventArgs"/> that contains the event data.</param>
+            <exception cref="T:System.Exception">
+            Any exceptions that occur during this method are ignored unless they are one of the following:
+              <see cref="T:System.NullReferenceException"/><see cref="T:System.StackOverflowException"/><see cref="T:System.OutOfMemoryException"/><see cref="T:System.Threading.ThreadAbortException"/><see cref="T:System.ExecutionEngineException"/><see cref="T:System.IndexOutOfRangeException"/><see cref="T:System.AccessViolationException"/></exception>
+        </member>
+        <member name="T:Syd.ScheduleControls.WeekScheduleControl">
+            <summary>
+            Shows a week of appointments.
+            </summary>
+        </member>
+        <member name="M:Syd.ScheduleControls.WeekScheduleControl.#ctor">
+            <summary>
+            Set up the days to display in this WeekScheduleControl.
+            </summary>
+        </member>
+        <member name="M:Syd.ScheduleControls.WeekScheduleControl.CalculateAppointmentBounds(System.Drawing.Graphics)">
+            <summary>
+            Calculate the appointment bounds. This works out the size and
+            shape that the appointments will take up on the screen,
+            and handles any other calculations such as overlaps. This method
+            is called from OnPaint only when the property BoundsValidAppointment
+            is set to false (this property is set to false in cases such as 
+            when the control has been resized or the appointment list has 
+            changed).
+            </summary>
+        </member>
+        <member name="M:Syd.ScheduleControls.WeekScheduleControl.CalculateTimeSlotBounds(System.Drawing.Graphics)">
+            <summary>
+            Calculate the time slot bounds. This works out the size and
+            shape that days will take up on the screen. This method
+            is called from OnPaint only when the property BoundsValidTimeSlot
+            is set to false (this property is set to false in cases such as 
+            when the control has been resized or the date shown has 
+            changed).
+            </summary>
+        </member>
+        <member name="M:Syd.ScheduleControls.WeekScheduleControl.OnPaint(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            Raises the <see cref="E:Paint"/> event.
+            </summary>
+            <param name="e">The <see cref="T:System.Windows.Forms.PaintEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="P:Syd.ScheduleControls.WeekScheduleControl.Date">
+            <summary>
+            Gets or sets the date to display.
+            </summary>
+            <value>
+            The date.
+            </value>
+        </member>
+        <member name="M:Syd.ScheduleControls.Events.AppointmentEditEventArgs.#ctor">
+            <summary>
+            Prevents a default instance of the <see cref="T:Syd.ScheduleControls.Events.AppointmentEditEventArgs"/> class from being created.
+            </summary>
+        </member>
+        <member name="M:Syd.ScheduleControls.Events.AppointmentEditEventArgs.#ctor(Syd.ScheduleControls.Data.Appointment,Syd.ScheduleControls.BaseScheduleControl)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Syd.ScheduleControls.Events.AppointmentEditEventArgs"/> class.
+            </summary>
+            <param name="appointment">The appointment.</param>
+            <param name="control">The control.</param>
+        </member>
+        <member name="P:Syd.ScheduleControls.Events.AppointmentEditEventArgs.Control">
+            <summary>
+            Gets or sets the control.
+            </summary>
+            <value>
+            The control.
+            </value>
+        </member>
+        <member name="P:Syd.ScheduleControls.Events.AppointmentEditEventArgs.Appointment">
+            <summary>
+            Gets or sets the appointment.
+            </summary>
+            <value>
+            The appointment.
+            </value>
+        </member>
+        <member name="M:Syd.ScheduleControls.Events.AppointmentCreateEventArgs.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Syd.ScheduleControls.Events.AppointmentCreateEventArgs"/> class.
+            </summary>
+        </member>
+        <member name="M:Syd.ScheduleControls.Events.AppointmentCreateEventArgs.#ctor(System.DateTime)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Syd.ScheduleControls.Events.AppointmentCreateEventArgs"/> class.
+            </summary>
+            <param name="date">The date.</param>
+        </member>
+        <member name="M:Syd.ScheduleControls.Events.AppointmentCreateEventArgs.#ctor(System.DateTime,Syd.ScheduleControls.BaseScheduleControl)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Syd.ScheduleControls.Events.AppointmentCreateEventArgs"/> class.
+            </summary>
+            <param name="date">The date.</param>
+            <param name="control">The control.</param>
+        </member>
+        <member name="P:Syd.ScheduleControls.Events.AppointmentCreateEventArgs.Control">
+            <summary>
+            Gets or sets the control.
+            </summary>
+            <value>
+            The control.
+            </value>
+        </member>
+        <member name="P:Syd.ScheduleControls.Events.AppointmentCreateEventArgs.Date">
+            <summary>
+            Gets or sets the date.
+            </summary>
+            <value>
+            The date.
+            </value>
+        </member>
+        <member name="T:Syd.ScheduleControls.Region.HourRegion">
+            <summary>
+            A region on the screen that displays an hour.
+            </summary>
+        </member>
+        <member name="F:Syd.ScheduleControls.Region.HourRegion.Appointments">
+            <summary>
+            The list of appointment regions.
+            </summary>
+        </member>
+        <member name="P:Syd.ScheduleControls.Region.HourRegion.Hour">
+            <summary>
+            Gets or sets the hour.
+            </summary>
+            <value>
+            The hour.
+            </value>
+        </member>
+        <member name="P:Syd.ScheduleControls.Region.HourRegion.Bounds">
+            <summary>
+            Gets or sets the bounds of this region.
+            </summary>
+            <value>
+            The bounds.
+            </value>
+        </member>
+        <member name="P:Syd.ScheduleControls.Region.HourRegion.IsWorkingHour">
+            <summary>
+            Gets or sets a value indicating whether this instance is a working hour.
+            </summary>
+            <value>
+            	<c>true</c> if this instance is a working hour; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Syd.ScheduleControls.Region.HourRegion.Bounds00">
+            <summary>
+            Gets or sets the bounds of 0 minute area.
+            </summary>
+            <value>
+            The bounds of 0 minute area.
+            </value>
+        </member>
+        <member name="P:Syd.ScheduleControls.Region.HourRegion.Bounds15">
+            <summary>
+            Gets or sets the bounds of 15 minute area.
+            </summary>
+            <value>
+            The bounds of 15 minute area.
+            </value>
+        </member>
+        <member name="P:Syd.ScheduleControls.Region.HourRegion.Bounds30">
+            <summary>
+            Gets or sets the bounds of 30 minute area.
+            </summary>
+            <value>
+            The bounds of 30 minute area.
+            </value>
+        </member>
+        <member name="P:Syd.ScheduleControls.Region.HourRegion.Bounds45">
+            <summary>
+            Gets or sets the bounds of 45 minute area.
+            </summary>
+            <value>
+            The bounds of 45 minute area.
+            </value>
+        </member>
+        <member name="P:Syd.ScheduleControls.Renderer.BorderInfo.Top">
+            <summary>
+            Whether to paint a top border
+            </summary>
+        </member>
+        <member name="P:Syd.ScheduleControls.Renderer.BorderInfo.Left">
+            <summary>
+            Whether to paint a left border
+            </summary>
+        </member>
+        <member name="P:Syd.ScheduleControls.Renderer.BorderInfo.Bottom">
+            <summary>
+            Whether to paint a bottom border
+            </summary>
+        </member>
+        <member name="P:Syd.ScheduleControls.Renderer.BorderInfo.Right">
+            <summary>
+            Whether to paint a right border
+            </summary>
+        </member>
+        <member name="P:Syd.ScheduleControls.Renderer.BorderInfo.All">
+            <summary>
+            Whether to paint all borders
+            </summary>
+        </member>
+        <member name="P:Syd.ScheduleControls.Renderer.BorderInfo.OverlapBottomRight">
+            <summary>
+            Whether to overlap the right and bottom borders by 1 pixel.
+            Only valid with BorderInfo.All set to true.
+            </summary>
+        </member>
+        <member name="T:Syd.ScheduleControls.Region.HeaderRegion">
+            <summary>
+            A region on the screen that displays a header.
+            </summary>
+        </member>
+        <member name="T:Syd.ScheduleControls.Renderer.NonVisualStyleWrapper">
+            <summary>
+            Renderer when visual styles are disabled.
+            </summary>
+        </member>
+        <member name="M:Syd.ScheduleControls.Renderer.NonVisualStyleWrapper.#ctor(System.Drawing.Color,System.Drawing.Brush,System.Drawing.Color,System.Drawing.Brush,System.Drawing.Pen)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Syd.ScheduleControls.Renderer.NonVisualStyleWrapper"/> class.
+            </summary>
+            <param name="foreColour">The fore colour.</param>
+            <param name="foreColourBrush">The fore colour brush.</param>
+            <param name="backColour">The back colour.</param>
+            <param name="backColourBrush">The back colour brush.</param>
+            <param name="borderPen">The border pen.</param>
+        </member>
+        <member name="M:Syd.ScheduleControls.Renderer.NonVisualStyleWrapper.#ctor(System.Drawing.Color,System.Drawing.Brush,System.Drawing.Color,System.Drawing.Brush,System.Drawing.Color,System.Drawing.Brush,System.Drawing.Pen)">
+            <summary>
+            Initializes a new instance of the <see cref="T:Syd.ScheduleControls.Renderer.NonVisualStyleWrapper"/> class.
+            </summary>
+            <param name="foreColour">The fore colour.</param>
+            <param name="foreColourBrush">The fore colour brush.</param>
+            <param name="backColour">The back colour.</param>
+            <param name="backColourBrush">The back colour brush.</param>
+            <param name="backColour2">The back colour2.</param>
+            <param name="backColourBrush2">The back colour brush2.</param>
+            <param name="borderPen">The border pen.</param>
+        </member>
+        <member name="T:Syd.ScheduleControls.Region.DayWithHourRegion">
+            <summary>
+            A region on the screen that displays a day with hours as well.
+            </summary>
+        </member>
+        <member name="F:Syd.ScheduleControls.Region.DayWithHourRegion.Hours">
+            <summary>
+            The list of hours in the day.
+            </summary>
+        </member>
+        <member name="T:Syd.ScheduleControls.MonthScheduleControl">
+            <summary>
+            Shows a month of appointments.
+            </summary>
+        </member>
+        <member name="M:Syd.ScheduleControls.MonthScheduleControl.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Syd.ScheduleControls.MonthScheduleControl"/> class.
+            </summary>
+        </member>
+        <member name="M:Syd.ScheduleControls.MonthScheduleControl.CalculateTimeSlotBounds(System.Drawing.Graphics)">
+            <summary>
+            Calculate the time slot bounds. This works out the size and
+            shape that days will take up on the screen. This method
+            is called from OnPaint only when the property BoundsValidTimeSlot
+            is set to false (this property is set to false in cases such as 
+            when the control has been resized or the date shown has 
+            changed).
+            </summary>
+        </member>
+        <member name="M:Syd.ScheduleControls.MonthScheduleControl.CalculateAppointmentBounds(System.Drawing.Graphics)">
+            <summary>
+            Calculate the appointment bounds. This works out the size and
+            shape that the appointments will take up on the screen,
+            and handles any other calculations such as overlaps. This method
+            is called from OnPaint only when the property BoundsValidAppointment
+            is set to false (this property is set to false in cases such as 
+            when the control has been resized or the appointment list has 
+            changed).
+            </summary>
+        </member>
+        <member name="M:Syd.ScheduleControls.MonthScheduleControl.OnPaint(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            Raises the <see cref="E:Paint"/> event.
+            </summary>
+            <param name="e">The <see cref="T:System.Windows.Forms.PaintEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="P:Syd.ScheduleControls.MonthScheduleControl.Date">
+            <summary>
+            Gets or sets the date to display.
+            </summary>
+            <value>
+            The date.
+            </value>
+        </member>
+        <member name="T:Syd.ScheduleControls.Renderer.VisualStyleWrapper">
+            <summary>
+            Renderer when visual styles are enabled.
+            </summary>
+        </member>
+        <member name="T:Syd.ScheduleControls.Renderer.RendererCache">
+            <summary>
+            Class to hold renderers for visual styles and non visual styles.
+            </summary>
+        </member>
+        <member name="M:Syd.ScheduleControls.Renderer.RendererCache.#ctor">
+            <summary>
+            Prevents a default instance of the <see cref="T:Syd.ScheduleControls.Renderer.RendererCache"/> class from being created.
+            </summary>
+        </member>
+        <member name="M:Syd.ScheduleControls.Renderer.RendererCache.VisualStylesChanged">
+            <summary>
+            Run when visual styles changed.
+            </summary>
+        </member>
+        <member name="P:Syd.ScheduleControls.Renderer.RendererCache.Current">
+            <summary>
+            Gets the current renderer cache instance.
+            </summary>
+        </member>
+        <member name="P:Syd.ScheduleControls.Renderer.RendererCache.ItemLight">
+            <summary>
+            Gets the light item renderer.
+            </summary>
+        </member>
+        <member name="P:Syd.ScheduleControls.Renderer.RendererCache.Item">
+            <summary>
+            Gets the item renderer.
+            </summary>
+        </member>
+        <member name="P:Syd.ScheduleControls.Renderer.RendererCache.Control">
+            <summary>
+            Gets the control renderer.
+            </summary>
+        </member>
+        <member name="P:Syd.ScheduleControls.Renderer.RendererCache.BigHeader">
+            <summary>
+            Gets the big header renderer.
+            </summary>
+        </member>
+        <member name="P:Syd.ScheduleControls.Renderer.RendererCache.Header">
+            <summary>
+            Gets the header renderer.
+            </summary>
+        </member>
+        <member name="P:Syd.ScheduleControls.Renderer.RendererCache.HeaderSelected">
+            <summary>
+            Gets the selected header renderer.
+            </summary>
+        </member>
+        <member name="P:Syd.ScheduleControls.Renderer.RendererCache.Appointment">
+            <summary>
+            Gets the appointment renderer.
+            </summary>
+        </member>
+        <member name="P:Syd.ScheduleControls.Renderer.RendererCache.AppointmentSelected">
+            <summary>
+            Gets the selected appointment renderer.
+            </summary>
+        </member>
+        <member name="T:Syd.ScheduleControls.Data.AppointmentList">
+            <summary>
+            A list of appointments.
+            </summary>
+        </member>
+        <member name="M:Syd.ScheduleControls.Data.AppointmentList.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Syd.ScheduleControls.Data.AppointmentList"/> class.
+            </summary>
+        </member>
+        <member name="M:Syd.ScheduleControls.Data.AppointmentList.SortAppointments">
+            <summary>
+            Sorts the appointments.
+            </summary>
+        </member>
+        <member name="T:Syd.ScheduleControls.DayScheduleControl">
+            <summary>
+            Shows a number of days worth of appointments.
+            </summary>
+        </member>
+        <member name="M:Syd.ScheduleControls.DayScheduleControl.#ctor">
+            <summary>
+            Initializes a new instance of the <see cref="T:Syd.ScheduleControls.DayScheduleControl"/> class.
+            </summary>
+        </member>
+        <member name="M:Syd.ScheduleControls.DayScheduleControl.HitTestDateTime(System.Int32,System.Int32)">
+            <summary>
+            Override the default hit-test-day behaviour with one that goes down to the hour.
+            </summary>
+            <param name="x">The x coordinate for the hit test.</param>
+            <param name="y">The y coordinate for the hit test.</param>
+            <returns>The datetime that the mouse click hit.</returns>
+        </member>
+        <member name="M:Syd.ScheduleControls.DayScheduleControl.DragDropEnd(Syd.ScheduleControls.Data.Appointment,System.Int32,System.Int32)">
+            <summary>
+            Override drag drop end so we can handle appointment moves to different hours in the same day.
+            </summary>
+            <param name="appointment">The dragged appointment</param>
+            <param name="x">The x coordinate it was dropped on.</param>
+            <param name="y">The y coordinate it was dropped on.</param>
+        </member>
+        <member name="M:Syd.ScheduleControls.DayScheduleControl.CalculateTimeSlotBounds(System.Drawing.Graphics)">
+            <summary>
+            Calculate the time slot bounds. This works out the size and
+            shape that days will take up on the screen. This method
+            is called from OnPaint only when the property BoundsValidTimeSlot
+            is set to false (this property is set to false in cases such as 
+            when the control has been resized or the date shown has 
+            changed).
+            </summary>
+        </member>
+        <member name="M:Syd.ScheduleControls.DayScheduleControl.CalculateAppointmentBounds(System.Drawing.Graphics)">
+            <summary>
+            Calculate the appointment bounds. This works out the size and
+            shape that the appointments will take up on the screen,
+            and handles any other calculations such as overlaps. This method
+            is called from OnPaint only when the property BoundsValidAppointment
+            is set to false (this property is set to false in cases such as 
+            when the control has been resized or the appointment list has 
+            changed).
+            </summary>
+        </member>
+        <member name="M:Syd.ScheduleControls.DayScheduleControl.handleOverlaps(Syd.ScheduleControls.Region.DayWithHourRegion)">
+            <summary>
+            Handles the appoinment overlaps badly.
+            </summary>
+            <param name="day">The day.</param>
+        </member>
+        <member name="M:Syd.ScheduleControls.DayScheduleControl.OnPaint(System.Windows.Forms.PaintEventArgs)">
+            <summary>
+            Raises the <see cref="E:Paint"/> event.
+            </summary>
+            <param name="e">The <see cref="T:System.Windows.Forms.PaintEventArgs"/> instance containing the event data.</param>
+        </member>
+        <member name="P:Syd.ScheduleControls.DayScheduleControl.Date">
+            <summary>
+            Gets or sets the date to display.
+            </summary>
+            <value>
+            The date.
+            </value>
+        </member>
+        <member name="P:Syd.ScheduleControls.DayScheduleControl.WorkStartHour">
+            <summary>
+            Gets or sets the work start hour.
+            </summary>
+            <value>
+            The work start hour.
+            </value>
+        </member>
+        <member name="P:Syd.ScheduleControls.DayScheduleControl.WorkEndHour">
+            <summary>
+            Gets or sets the work end hour.
+            </summary>
+            <value>
+            The work end hour.
+            </value>
+        </member>
+        <member name="P:Syd.ScheduleControls.DayScheduleControl.RenderWorkingHoursOnly">
+            <summary>
+            Gets or sets a value indicating whether to only render working hours.
+            </summary>
+            <value>
+            	<c>true</c> if only render working hours; otherwise, <c>false</c>.
+            </value>
+        </member>
+        <member name="P:Syd.ScheduleControls.DayScheduleControl.SingleDay">
+            <summary>
+            Gets or sets a value indicating whether to show only a single day.
+            </summary>
+            <value>
+              <c>true</c> if showing only a single day; otherwise, <c>false</c>.
+            </value>
+        </member>
+    </members>
+</doc>

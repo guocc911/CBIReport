@@ -1,0 +1,523 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Root>
+  <APP>
+    <!-- <DBConnstr>Database=cbitracesysdb;Data Source=10.176.65.245;User Id=cbi;Password=cbi@2013;charset=gb2312;pooling=true</DBConnstr>-->
+	  <!--<DBConnstr>Database=cbitracesysdb;Data Source=localhost;User Id=root;Password=87671678;charset=gb2312;pooling=true</DBConnstr>-->
+    <!--<DBConnstr>Database=cbireportpanel;Data Source=10.176.65.245;User Id=cbi;Password=cbi@2013;charset=gb2312;pooling=true</DBConnstr>-->
+    <DBConnstr>Database=cbireportpanel;Data Source=localhost;User Id=root;Password=123456;charset=gb2312;pooling=true</DBConnstr>
+    <MxOPCServer OPCIP="127.0.0.1" OPCName="Mitsubishi.MXOPC.6" GroupName="MxL1"/>
+    <!--<OPCServer OPCIP="10.176.65.214" OPCName="KEPware.KEPServerEx.V4" GroupName="CBIL1"/>-->
+    <RexOPCServer OPCIP="127.0.0.1" OPCName="CoDeSys.OPC.02" GroupName="RexrothL1"/>
+    <!--<IOLogik IP="10.176.65.215" Port="502" ConnTimeOut="5000" Password="" />
+    <LineID>L1</LineID>-->
+    <IOLogik IP="10.176.65.235" Port="502" ConnTimeOut="5000" Password="" />
+    <LineID>L2</LineID>
+    <PlanTimeSpan>10</PlanTimeSpan>
+    <!--是否检验流水号的有效性和完整性-->
+    <DataCheckOut>0</DataCheckOut>
+    <!--自动写流水号，仅在不扫描条码调试时使用-->
+    <SysDebug>0</SysDebug>
+  </APP>
+  <L1>
+    <PrinterList>
+      <!--Type=1表示卡钳打印机,CodeType=1表示打印一维条码-->
+      <Printer Name="CaliperPrinter" IPAddress="10.176.65.212" Type="1" CodeType="1" CountKey="C1" Remark="卡钳打印机" />
+      <!--Type=1表示支架打印机,CodeType=2表示打印二维条码-->
+      <Printer Name="BrakePrinter" IPAddress="10.176.65.213" Type="2" CodeType="1" CountKey="B1" Remark="支架打印机" />
+    </PrinterList>
+    <ScannerList>
+      <Scanner StationID="ST110" ComPort="2" ComSet="115200,n,8,1" LightIOPort="0" LineType="1" BarCodeItemID="ST100.ST110_BarCode" EnableTraceSysItemID="ST100.ST110_EnableTraceSys" Remark=""/>
+      <Scanner StationID="ST160" ComPort="3" ComSet="115200,n,8,1" LightIOPort="1" LineType="1" BarCodeItemID="ST160.BarCode" EnableTraceSysItemID="ST160.EnableTraceSys" Remark=""/>
+      <Scanner StationID="ST290" ComPort="7" ComSet="115200,n,8,1" LightIOPort="5" LineType="2" BarCodeItemID="ST290.BarCode" EnableTraceSysItemID="" Remark="新增，串口号需确认"/>
+	  <Scanner StationID="ST300" ComPort="4" ComSet="115200,n,8,1" LightIOPort="2" LineType="2" BarCodeItemID="ST300.BarCode" EnableTraceSysItemID="ST300.EnableTraceSys" Remark=""/>
+      <Scanner StationID="ST370" ComPort="5" ComSet="115200,n,8,1" LightIOPort="3" LineType="2" BarCodeItemID="" EnableTraceSysItemID="ST390.EnableTraceSys" Remark=""/>
+      <Scanner StationID="ST440" ComPort="6" ComSet="115200,n,8,1" LightIOPort="4" LineType="2" BarCodeItemID="" EnableTraceSysItemID="ST440.EnableTraceSys" Remark=""/>
+    </ScannerList>
+    <PLCDataList>
+      <!--ST100-->
+      <PLCData ItemID="ST100.PrintIO" IsKey="false" StationID="ST100" DBFieldName="" DBFieldType="" DecPoint="" Remark="" />
+      <PLCData ItemID="ST100.ProductType" IsKey="false" StationID="ST100" DBFieldName="" DBFieldType="" DecPoint="" Remark="产品类型" />
+      <PLCData ItemID="ST100.ST110_BarCode" IsKey="true" StationID="ST100" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST100.ST110_WriteCode" IsKey="false" StationID="ST100" DBFieldName="" DBFieldType="" DecPoint="" Remark="" />
+      <PLCData ItemID="ST100.DeviceIn" IsKey="false" StationID="ST100" DBFieldName="" DBFieldType="" DecPoint="" Remark="设备进入工位" />
+      <PLCData ItemID="ST100.ST110_EnableTraceSys" IsKey="false" StationID="ST100" DBFieldName="" DBFieldType="" DecPoint="" Remark="扫描枪放行条件" />
+	  <PLCData ItemID="ST100.AlarmPrintErr" IsKey="false" StationID="ST100" DBFieldName="" DBFieldType="" DecPoint="" Remark="" />
+	  <PLCData ItemID="ST100.AlarmTraceServerClose" IsKey="false" StationID="ST100" DBFieldName="" DBFieldType="" DecPoint="" Remark="" />
+      <!--ST160-->
+      <PLCData ItemID="ST160.BarCode" IsKey="true" StationID="ST160" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST160.WriteCode" IsKey="false" StationID="ST160" DBFieldName="" DBFieldType="" DecPoint="" Remark="" />      
+      <PLCData ItemID="ST160.Torque" IsKey="false" StationID="ST160" DBFieldName="st160_t" DBFieldType="1" DecPoint="5" Remark="" />
+      <PLCData ItemID="ST160.Angle" IsKey="false" StationID="ST160" DBFieldName="st160_a" DBFieldType="1" DecPoint="4" Remark="" />
+      <PLCData ItemID="ST160.EnableTraceSys" IsKey="false" StationID="ST160" DBFieldName="" DBFieldType="" DecPoint="" Remark="ST160扫描枪放行条件" />
+      <!--ST160A-->
+      <PLCData ItemID="ST160.ABarCode" IsKey="true" StationID="ST160A" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST160.ALeakage" IsKey="false" StationID="ST160A" DBFieldName="st170" DBFieldType="1" DecPoint="" Remark="ST170A工位检测Leakage结果" />
+      <PLCData ItemID="ST160.AComplete" IsKey="false" StationID="ST160A" DBFieldName="" DBFieldType="" DecPoint="" Remark="工件检测完成" />
+      <!--ST160B-->
+      <PLCData ItemID="ST160.BBarCode" IsKey="true" StationID="ST160B" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST160.BLeakage" IsKey="false" StationID="ST160B" DBFieldName="st170" DBFieldType="1" DecPoint="" Remark="ST170B检测Leakage结果" />
+      <PLCData ItemID="ST160.BComplete" IsKey="false" StationID="ST160B" DBFieldName="" DBFieldType="" DecPoint="" Remark="工件检测完成" />      
+      <!--ST180A-->
+      <PLCData ItemID="ST180.ABarCode" IsKey="true" StationID="ST180A" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST180.ALeakage" IsKey="false" StationID="ST180A" DBFieldName="st180" DBFieldType="1" DecPoint="" Remark="ST180A工位检测Leakage结果" />
+      <PLCData ItemID="ST180.AComplete" IsKey="false" StationID="ST180A" DBFieldName="" DBFieldType="" DecPoint="" Remark="工件完成" />
+      <!--ST180B-->
+      <PLCData ItemID="ST180.BBarCode" IsKey="true" StationID="ST180B" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST180.BLeakage" IsKey="false" StationID="ST180B" DBFieldName="st180" DBFieldType="1" DecPoint="" Remark="ST180B检测Leakage结果" />
+      <PLCData ItemID="ST180.BComplete" IsKey="false" StationID="ST180B" DBFieldName="" DBFieldType="" DecPoint="" Remark="工件完成" />
+      <!--ST210-->
+      <PLCData ItemID="ST210.BarCode" IsKey="true" StationID="ST210" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST210.Result" IsKey="false" StationID="ST210" DBFieldName="st210,st210_a" DBFieldType="2" DecPoint="0" Remark="检测Leakage结果" />
+      <PLCData ItemID="ST210.Complete" IsKey="false" StationID="ST210" DBFieldName="" DBFieldType="" DecPoint="" Remark="工件完成" />
+      <PLCData ItemID="ST210.EnableTraceSys" IsKey="false" StationID="ST210" DBFieldName="" DBFieldType="" DecPoint="" Remark="是否启用追溯系统" />
+      <PLCData ItemID="ST210.ControlPass" IsKey="false" StationID="ST210" DBFieldName="" DBFieldType="" DecPoint="" Remark="控制工件放行" />
+      <!--ST250-->
+      <PLCData ItemID="ST250.EnableTraceSys" IsKey="false" StationID="ST250" DBFieldName="" DBFieldType="" DecPoint="" Remark="是否启用追溯系统" />
+      <!--ST250A-->
+      <PLCData ItemID="ST250.ABarCode" IsKey="true" StationID="ST250A" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST250.ABIC" IsKey="false" StationID="ST250A" DBFieldName="st250_b" DBFieldType="1" DecPoint="4" Remark="BIC" />
+      <PLCData ItemID="ST250.ALeakage" IsKey="false" StationID="ST250A" DBFieldName="st250_l" DBFieldType="1" DecPoint="0" Remark="Leakage" />
+      <PLCData ItemID="ST250.APressure" IsKey="false" StationID="ST250A" DBFieldName="st250_p" DBFieldType="1" DecPoint="0" Remark="Pressure" />
+      <PLCData ItemID="ST250.ST240_ABack" IsKey="false" StationID="ST250A" DBFieldName="st240_b" DBFieldType="1" DecPoint="4" Remark="ST240_Back" />
+      <PLCData ItemID="ST250.ST240_ADistance" IsKey="false" StationID="ST250A" DBFieldName="st240_d" DBFieldType="1" DecPoint="4" Remark="ST240_Distance" />
+      <PLCData ItemID="ST250.ST240_AOut" IsKey="false" StationID="ST250A" DBFieldName="st240_o" DBFieldType="1" DecPoint="4" Remark="ST240_Out" />
+      <PLCData ItemID="ST250.ARollback" IsKey="false" StationID="ST250A" DBFieldName="st250_r" DBFieldType="1" DecPoint="4" Remark="Rollback" />
+      <PLCData ItemID="ST250.AComplete" IsKey="false" StationID="ST250A" DBFieldName="" DBFieldType="" DecPoint="" Remark="工件完成" />
+      <PLCData ItemID="ST250.AControlPass" IsKey="false" StationID="ST250A" DBFieldName="" DBFieldType="" DecPoint="" Remark="控制工件放行" />
+      <!--ST250B-->
+      <PLCData ItemID="ST250.BBarCode" IsKey="true" StationID="ST250B" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />      
+      <PLCData ItemID="ST250.BBIC" IsKey="false" StationID="ST250B" DBFieldName="st250_b" DBFieldType="1" DecPoint="4" Remark="BIC" />
+      <PLCData ItemID="ST250.BLeakage" IsKey="false" StationID="ST250B" DBFieldName="st250_l" DBFieldType="1" DecPoint="0" Remark="检测Leakage结果" />
+      <PLCData ItemID="ST250.BPressure" IsKey="false" StationID="ST250B" DBFieldName="st250_p" DBFieldType="1" DecPoint="0" Remark="Pressure" />
+      <PLCData ItemID="ST250.ST240_BBack" IsKey="false" StationID="ST250B" DBFieldName="st240_b" DBFieldType="1" DecPoint="4" Remark="ST240_Back" />
+      <PLCData ItemID="ST250.ST240_BDistance" IsKey="false" StationID="ST250B" DBFieldName="st240_d" DBFieldType="1" DecPoint="4" Remark="ST240_Distance" />
+      <PLCData ItemID="ST250.ST240_BOut" IsKey="false" StationID="ST250B" DBFieldName="st240_o" DBFieldType="1" DecPoint="4" Remark="ST240_Out" />
+      <PLCData ItemID="ST250.BRollback" IsKey="false" StationID="ST250B" DBFieldName="st250_r" DBFieldType="1" DecPoint="4" Remark="Rollback" />
+      <PLCData ItemID="ST250.BComplete" IsKey="false" StationID="ST250B" DBFieldName="" DBFieldType="" DecPoint="" Remark="工件完成" />
+      <PLCData ItemID="ST250.BControlPass" IsKey="false" StationID="ST250B" DBFieldName="" DBFieldType="" DecPoint="" Remark="控制工件放行" />
+      <!--ST270-->
+      <PLCData ItemID="ST270.BarCode" IsKey="true" StationID="ST270" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST270.ST120_PF" IsKey="false" StationID="ST270" DBFieldName="st120_pf" DBFieldType="1" DecPoint="" Remark="120工位PF值" />
+      <PLCData ItemID="ST270.ST150_PF" IsKey="false" StationID="ST270" DBFieldName="st150_pf" DBFieldType="1" DecPoint="" Remark="150工位PF值" />
+      <PLCData ItemID="ST270.ST160_PF" IsKey="false" StationID="ST270" DBFieldName="st160_pf" DBFieldType="1" DecPoint="" Remark="160工位PF值" />
+      <PLCData ItemID="ST270.ST200_PF" IsKey="false" StationID="ST270" DBFieldName="st200_pf" DBFieldType="1" DecPoint="" Remark="200工位PF值" />
+      <PLCData ItemID="ST270.ST230_PF" IsKey="false" StationID="ST270" DBFieldName="st230" DBFieldType="1" DecPoint="" Remark="230工位PF值" />
+      <PLCData ItemID="ST270.ST260_PF" IsKey="false" StationID="ST270" DBFieldName="st260" DBFieldType="1" DecPoint="" Remark="260工位PF值" />
+      <PLCData ItemID="ST270.ST270_PF" IsKey="false" StationID="ST270" DBFieldName="st270" DBFieldType="1" DecPoint="" Remark="270工位PF值" />
+      <PLCData ItemID="ST270.Complete" IsKey="false" StationID="ST270" DBFieldName="" DBFieldType="" DecPoint="" Remark="工件已完成" />
+	  <!--ST290-->
+	  <PLCData ItemID="ST290.BarCode" IsKey="true" StationID="ST290" DBFieldName="brakecode" DBFieldType="2" DecPoint="" Remark="支架流水号" />
+	  <PLCData ItemID="ST290.WriteCode" IsKey="false" StationID="ST290" DBFieldName="" DBFieldType="" DecPoint="" Remark="" />
+	  <PLCData ItemID="ST290.EnableTraceSys" IsKey="false" StationID="ST290" DBFieldName="" DBFieldType="" DecPoint="" Remark="是否启用追溯系统" />
+      <!--ST300-->
+      <PLCData ItemID="ST300.PrintIO" IsKey="false" StationID="ST300" DBFieldName="" DBFieldType="" DecPoint="" Remark="" />
+      <PLCData ItemID="ST300.BarCode" IsKey="True" StationID="ST300" DBFieldName="brakecode" DBFieldType="2" DecPoint="" Remark="支架流水号" />      
+      <PLCData ItemID="ST300.WriteCode" IsKey="false" StationID="ST300" DBFieldName="" DBFieldType="" DecPoint="" Remark="" />
+      <PLCData ItemID="ST300.ProductType" IsKey="false" StationID="ST300" DBFieldName="" DBFieldType="" DecPoint="" Remark="产品类型" />
+      <PLCData ItemID="ST300.DeviceIn" IsKey="false" StationID="ST300" DBFieldName="" DBFieldType="" DecPoint="" Remark="设备进入工位" />
+      <PLCData ItemID="ST300.EnableTraceSys" IsKey="false" StationID="ST300" DBFieldName="" DBFieldType="" DecPoint="" Remark="" />
+	  <PLCData ItemID="ST300.AlarmPrintErr" IsKey="false" StationID="ST300" DBFieldName="" DBFieldType="" DecPoint="" Remark="" />
+	  <PLCData ItemID="ST300.AlarmTraceServerClose" IsKey="false" StationID="ST300" DBFieldName="" DBFieldType="" DecPoint="" Remark="" />
+      <!--ST370-->
+      <PLCData ItemID="ST390.ST370_BarCode" IsKey="True" StationID="ST370" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="370工位从托盘读取支架标签，需要匹配" />      
+      <PLCData ItemID="ST390.ST370_ControlPass" IsKey="false" StationID="ST370" DBFieldName="" DBFieldType="" DecPoint="" Remark="标签绑定后控制托盘放行" />
+      <PLCData ItemID="ST390.EnableTraceSys" IsKey="false" StationID="ST370" DBFieldName="" DBFieldType="" DecPoint="" Remark="是否启用追溯系统的放行条件,为0表示不启用,为1表示启用" />
+      <!--ST390-->
+      <PLCData ItemID="ST390.BarCode" IsKey="True" StationID="ST390" DBFieldName="brakecode" DBFieldType="2" DecPoint="" Remark="支架流水号" />
+      <PLCData ItemID="ST390.Torque1" IsKey="false"  StationID="ST390" DBFieldName="st390_t1" DBFieldType="1" DecPoint="5" Remark="Torque" />
+      <PLCData ItemID="ST390.Angle1" IsKey="false"  StationID="ST390" DBFieldName="st390_a1" DBFieldType="1" DecPoint="4" Remark="Angle" />
+      <PLCData ItemID="ST390.Torque2" IsKey="false"  StationID="ST390" DBFieldName="st390_t2" DBFieldType="1" DecPoint="5" Remark="Torque" />
+      <PLCData ItemID="ST390.Angle2" IsKey="false"  StationID="ST390" DBFieldName="st390_a2" DBFieldType="1" DecPoint="4" Remark="Angle" />
+      <PLCData ItemID="ST390.Complete" IsKey="false"  StationID="ST390" DBFieldName="" DBFieldType="" DecPoint="" Remark="工件完成" />
+      <PLCData ItemID="ST390.ControlPass" IsKey="false"  StationID="ST390" DBFieldName="" DBFieldType="" DecPoint="" Remark="控制工件放行" />
+	  <PLCData ItemID="ST390.AlarmPackageErr" IsKey="false"  StationID="ST390" DBFieldName="" DBFieldType="" DecPoint="" Remark="" />
+      <!--ST420-->
+      <PLCData ItemID="ST420.BarCode" IsKey="true" StationID="ST420" DBFieldName="brakecode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST420.EATCode" IsKey="false" StationID="ST420" DBFieldName="eatcode" DBFieldType="2" DecPoint="" Remark="EAT码" />
+	  <PLCData ItemID="ST420.ProductType" IsKey="false" StationID="ST420" DBFieldName="" DBFieldType="" DecPoint="" Remark="产品类型" />
+      <PLCData ItemID="ST420.ST290_PF" IsKey="false" StationID="ST420" DBFieldName="st290" DBFieldType="1" DecPoint="" Remark="290工位PF值" />
+      <PLCData ItemID="ST420.ST361_PF" IsKey="false" StationID="ST420" DBFieldName="st361" DBFieldType="1" DecPoint="" Remark="361工位PF值" />
+      <PLCData ItemID="ST420.ST410_PF" IsKey="false" StationID="ST420" DBFieldName="st410" DBFieldType="1" DecPoint="" Remark="410工位PF值" />
+      <!--<PLCData ItemID="ST420.T1Max" IsKey="false"  StationID="ST420" DBFieldName="st420_t1max" DBFieldType="1" DecPoint="" Remark="" />
+      <PLCData ItemID="ST420.T1Min" IsKey="false"  StationID="ST420" DBFieldName="st420_t1min" DBFieldType="1" DecPoint="" Remark="" />
+      <PLCData ItemID="ST420.D1Max" IsKey="false"  StationID="ST420" DBFieldName="st420_d1max" DBFieldType="1" DecPoint="" Remark="" />
+      <PLCData ItemID="ST420.D1Min" IsKey="false"  StationID="ST420" DBFieldName="st420_d1min" DBFieldType="1" DecPoint="" Remark="" />
+      <PLCData ItemID="ST420.T2Max" IsKey="false"  StationID="ST420" DBFieldName="st420_t2max" DBFieldType="1" DecPoint="" Remark="" />
+      <PLCData ItemID="ST420.T2Min" IsKey="false"  StationID="ST420" DBFieldName="st420_t2min" DBFieldType="1" DecPoint="" Remark="" />
+      <PLCData ItemID="ST420.D2Max" IsKey="false"  StationID="ST420" DBFieldName="st420_d2max" DBFieldType="1" DecPoint="" Remark="" />
+      <PLCData ItemID="ST420.D2Min" IsKey="false"  StationID="ST420" DBFieldName="st420_d2min" DBFieldType="1" DecPoint="" Remark="" />-->
+      <PLCData ItemID="ST420.XMinX1" IsKey="false"  StationID="ST420" DBFieldName="st420_xminx1" DBFieldType="1" DecPoint="" Remark="" />
+      <PLCData ItemID="ST420.XMinY1" IsKey="false"  StationID="ST420" DBFieldName="st420_xminy1" DBFieldType="1" DecPoint="" Remark="" />
+      <PLCData ItemID="ST420.XMaxX1" IsKey="false"  StationID="ST420" DBFieldName="st420_xmaxx1" DBFieldType="1" DecPoint="" Remark="" />
+      <PLCData ItemID="ST420.XMaxY1" IsKey="false"  StationID="ST420" DBFieldName="st420_xmaxy1" DBFieldType="1" DecPoint="" Remark="" />
+      <PLCData ItemID="ST420.YMinX1" IsKey="false"  StationID="ST420" DBFieldName="st420_yminx1" DBFieldType="1" DecPoint="" Remark="" />
+      <PLCData ItemID="ST420.YMinY1" IsKey="false"  StationID="ST420" DBFieldName="st420_yminy1" DBFieldType="1" DecPoint="" Remark="" />
+      <PLCData ItemID="ST420.YMaxX1" IsKey="false"  StationID="ST420" DBFieldName="st420_ymaxx1" DBFieldType="1" DecPoint="" Remark="" />
+      <PLCData ItemID="ST420.YMaxY1" IsKey="false"  StationID="ST420" DBFieldName="st420_ymaxy1" DBFieldType="1" DecPoint="" Remark="" />
+      <PLCData ItemID="ST420.XMinX2" IsKey="false"  StationID="ST420" DBFieldName="st420_xminx2" DBFieldType="1" DecPoint="" Remark="" />
+      <PLCData ItemID="ST420.XMinY2" IsKey="false"  StationID="ST420" DBFieldName="st420_xminy2" DBFieldType="1" DecPoint="" Remark="" />
+      <PLCData ItemID="ST420.XMaxX2" IsKey="false"  StationID="ST420" DBFieldName="st420_xmaxx2" DBFieldType="1" DecPoint="" Remark="" />
+      <PLCData ItemID="ST420.XMaxY2" IsKey="false"  StationID="ST420" DBFieldName="st420_xmaxy2" DBFieldType="1" DecPoint="" Remark="" />
+      <PLCData ItemID="ST420.YMinX2" IsKey="false"  StationID="ST420" DBFieldName="st420_yminx2" DBFieldType="1" DecPoint="" Remark="" />
+      <PLCData ItemID="ST420.YMinY2" IsKey="false"  StationID="ST420" DBFieldName="st420_yminy2" DBFieldType="1" DecPoint="" Remark="" />
+      <PLCData ItemID="ST420.YMaxX2" IsKey="false"  StationID="ST420" DBFieldName="st420_ymaxx2" DBFieldType="1" DecPoint="" Remark="" />
+      <PLCData ItemID="ST420.YMaxY2" IsKey="false"  StationID="ST420" DBFieldName="st420_ymaxy2" DBFieldType="1" DecPoint="" Remark="" />
+      <PLCData ItemID="ST420.Complete" IsKey="false"  StationID="ST420" DBFieldName="" DBFieldType="" DecPoint="" Remark="工件完成" />
+      <PLCData ItemID="ST420.ControlPass" IsKey="false"  StationID="ST420" DBFieldName="" DBFieldType="" DecPoint="" Remark="控制工件放行" />
+      <PLCData ItemID="ST420.EnableTraceSys" IsKey="false" StationID="ST420" DBFieldName="" DBFieldType="" DecPoint="" Remark="启用标识" />
+      <!--ST430-->
+      <!--<PLCData ItemID="ST440.ST430_BarCode" IsKey="true" StationID="ST430" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST440.ST430_PassCon" IsKey="false" StationID="ST430" DBFieldName="" DBFieldType="" DecPoint="" Remark="ST430扫描枪放行条件" />-->
+      <!--ST440-->
+      <PLCData ItemID="ST440.BarCode" IsKey="true" StationID="ST440" DBFieldName="brakecode" DBFieldType="2" DecPoint="" Remark="支架流水号brakecode" />
+      <PLCData ItemID="ST440.BracketCode" IsKey="false" StationID="ST440" DBFieldName="bracketcode" DBFieldType="2" DecPoint="" Remark="总成号" />
+      <PLCData ItemID="ST440.ProductType" IsKey="false" StationID="ST440" DBFieldName="" DBFieldType="" DecPoint="" Remark="产品类型" />
+      <PLCData ItemID="ST440.Marking" IsKey="false" StationID="ST440" DBFieldName="" DBFieldType="" DecPoint="" Remark="控制刻蚀机工作" />
+      <PLCData ItemID="ST440.ST290_PF" IsKey="false" StationID="ST440" DBFieldName="st290" DBFieldType="1" DecPoint="" Remark="290工位PF值" />
+      <PLCData ItemID="ST440.ST300_PF" IsKey="false" StationID="ST440" DBFieldName="st300" DBFieldType="1" DecPoint="" Remark="300工位PF值" />
+      <PLCData ItemID="ST440.ST320_PF" IsKey="false" StationID="ST440" DBFieldName="st320" DBFieldType="1" DecPoint="" Remark="320工位PF值" />
+      <PLCData ItemID="ST440.ST360_PF" IsKey="false" StationID="ST440" DBFieldName="st360" DBFieldType="1" DecPoint="" Remark="360工位PF值" />
+      <PLCData ItemID="ST440.ST361_PF" IsKey="false" StationID="ST440" DBFieldName="st361" DBFieldType="1" DecPoint="" Remark="361工位PF值" />
+      <PLCData ItemID="ST440.ST410_PF" IsKey="false" StationID="ST440" DBFieldName="st410" DBFieldType="1" DecPoint="" Remark="410工位PF值" />
+      <PLCData ItemID="ST440.ST430_PF" IsKey="false" StationID="ST440" DBFieldName="st430" DBFieldType="1" DecPoint="" Remark="430工位PF值" />
+      <PLCData ItemID="ST440.ST440_PF" IsKey="false" StationID="ST440" DBFieldName="st440" DBFieldType="1" DecPoint="" Remark="440工位PF值" />
+      <PLCData ItemID="ST440.Complete" IsKey="false" StationID="ST440" DBFieldName="" DBFieldType="" DecPoint="" Remark="工件已进入工位，流水号与PF值已读取完成" />
+      <PLCData ItemID="ST440.EnableTraceSys" IsKey="false" StationID="ST440" DBFieldName="" DBFieldType="" DecPoint="" Remark="启用标识" />
+	  <PLCData ItemID="ST440.AlarmBarCodeCheckErr" IsKey="false" StationID="ST440" DBFieldName="" DBFieldType="" DecPoint="" Remark="" />
+	  <PLCData ItemID="ST440.AlarmResultNOK" IsKey="false" StationID="ST440" DBFieldName="" DBFieldType="" DecPoint="" Remark="" />
+      <!--<PLCData ItemID="ST440.ST440_PF" IsKey="false" StationID="ST440" DBFieldName="st440" DBFieldType="1" DecPoint="" Remark="440工位PF值" />-->
+    </PLCDataList>
+    <RexrothDataList>
+      <!--ST120A-->
+      <PLCData ItemID="ST120B:.EMS_ST120A_1" IsKey="true" StationID="ST120A" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST120B:.EMS_ST120A_2" IsKey="true" StationID="ST120A" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST120B:.EMS_ST120A_3" IsKey="true" StationID="ST120A" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST120B:.EMS_ST120A_4" IsKey="true" StationID="ST120A" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST120B:.EMS_ST120A_5" IsKey="true" StationID="ST120A" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST120B:.EMS_ST120A_6" IsKey="true" StationID="ST120A" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST120B:.EMS_ST120A_7" IsKey="true" StationID="ST120A" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST120B:.EMS_ST120A_8" IsKey="true" StationID="ST120A" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST120B:.EMS_ST120A_9" IsKey="true" StationID="ST120A" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST120B:.EMS_ST120A_10" IsKey="true" StationID="ST120A" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST120B:.EMS_ST120A_11" IsKey="true" StationID="ST120A" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST120B:.EMS_ST120A_12" IsKey="true" StationID="ST120A" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST120B:.ST120A_Stroke" IsKey="false" StationID="ST120A" DBFieldName="st120_s" DBFieldType="1" DecPoint="" Remark="Stroke" />
+      <PLCData ItemID="ST120B:.ST120A_Torque" IsKey="false" StationID="ST120A" DBFieldName="st120_t" DBFieldType="1" DecPoint="" Remark="Torque" />
+      <PLCData ItemID="ST120B:.ST120A_Angle" IsKey="false" StationID="ST120A" DBFieldName="st120_a" DBFieldType="1" DecPoint="" Remark="Angle" />
+      <PLCData ItemID="ST120B:.ST120A_End" IsKey="false" StationID="ST120A" DBFieldName="" DBFieldType="" DecPoint="" Remark="工件完成" />
+      <!--ST120B-->
+      <PLCData ItemID="ST120A:.EMS_ST120B_1" IsKey="true" StationID="ST120B" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST120A:.EMS_ST120B_2" IsKey="true" StationID="ST120B" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST120A:.EMS_ST120B_3" IsKey="true" StationID="ST120B" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST120A:.EMS_ST120B_4" IsKey="true" StationID="ST120B" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST120A:.EMS_ST120B_5" IsKey="true" StationID="ST120B" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST120A:.EMS_ST120B_6" IsKey="true" StationID="ST120B" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST120A:.EMS_ST120B_7" IsKey="true" StationID="ST120B" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST120A:.EMS_ST120B_8" IsKey="true" StationID="ST120B" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST120A:.EMS_ST120B_9" IsKey="true" StationID="ST120B" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST120A:.EMS_ST120B_10" IsKey="true" StationID="ST120B" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST120A:.EMS_ST120B_11" IsKey="true" StationID="ST120B" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST120A:.EMS_ST120B_12" IsKey="true" StationID="ST120B" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST120A:.ST120B_Stroke" IsKey="false" StationID="ST120B" DBFieldName="st120_s" DBFieldType="1" DecPoint="" Remark="Stroke" />
+      <PLCData ItemID="ST120A:.ST120B_Torque" IsKey="false" StationID="ST120B" DBFieldName="st120_t" DBFieldType="1" DecPoint="" Remark="Torque" />
+      <PLCData ItemID="ST120A:.ST120B_Angle" IsKey="false" StationID="ST120B" DBFieldName="st120_a" DBFieldType="1" DecPoint="" Remark="Angle" />
+      <PLCData ItemID="ST120A:.ST120B_End" IsKey="false" StationID="ST120B" DBFieldName="" DBFieldType="" DecPoint="" Remark="工件完成" />
+      <!--ST150A-->
+      <!--<PLCData ItemID="ST150:.EMS_ST150A_1" IsKey="true" StationID="ST150A" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST150:.EMS_ST150A_2" IsKey="true" StationID="ST150A" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST150:.EMS_ST150A_3" IsKey="true" StationID="ST150A" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST150:.EMS_ST150A_4" IsKey="true" StationID="ST150A" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST150:.EMS_ST150A_5" IsKey="true" StationID="ST150A" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST150:.EMS_ST150A_6" IsKey="true" StationID="ST150A" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />-->
+      <PLCData ItemID="ST150:.EMS_ST150A_7" IsKey="true" StationID="ST150A" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST150:.EMS_ST150A_8" IsKey="true" StationID="ST150A" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST150:.EMS_ST150A_9" IsKey="true" StationID="ST150A" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST150:.EMS_ST150A_10" IsKey="true" StationID="ST150A" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST150:.EMS_ST150A_11" IsKey="true" StationID="ST150A" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST150:.EMS_ST150A_12" IsKey="true" StationID="ST150A" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST150:.ST150A_Stroke" IsKey="false" StationID="ST150A" DBFieldName="ST150_d" DBFieldType="1" DecPoint="" Remark="Stroke" />
+      <PLCData ItemID="ST150:.ST150A_Torque" IsKey="false" StationID="ST150A" DBFieldName="ST150_t" DBFieldType="1" DecPoint="" Remark="Torque" />
+      <PLCData ItemID="ST150:.ST150A_Angle" IsKey="false" StationID="ST150A" DBFieldName="ST150_a" DBFieldType="1" DecPoint="" Remark="Angle" />
+      <PLCData ItemID="ST150:.ST150A_End" IsKey="false" StationID="ST150A" DBFieldName="" DBFieldType="" DecPoint="" Remark="工件完成" />
+      <!--ST150B-->
+      <!--<PLCData ItemID="ST150:.EMS_ST150B_1" IsKey="true" StationID="ST150B" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST150:.EMS_ST150B_2" IsKey="true" StationID="ST150B" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST150:.EMS_ST150B_3" IsKey="true" StationID="ST150B" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST150:.EMS_ST150B_4" IsKey="true" StationID="ST150B" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST150:.EMS_ST150B_5" IsKey="true" StationID="ST150B" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST150:.EMS_ST150B_6" IsKey="true" StationID="ST150B" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />-->
+      <PLCData ItemID="ST150:.EMS_ST150B_7" IsKey="true" StationID="ST150B" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST150:.EMS_ST150B_8" IsKey="true" StationID="ST150B" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST150:.EMS_ST150B_9" IsKey="true" StationID="ST150B" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST150:.EMS_ST150B_10" IsKey="true" StationID="ST150B" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST150:.EMS_ST150B_11" IsKey="true" StationID="ST150B" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST150:.EMS_ST150B_12" IsKey="true" StationID="ST150B" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST150:.ST150B_Stroke" IsKey="false" StationID="ST150B" DBFieldName="ST150_d" DBFieldType="1" DecPoint="" Remark="Stroke" />
+      <PLCData ItemID="ST150:.ST150B_Torque" IsKey="false" StationID="ST150B" DBFieldName="ST150_t" DBFieldType="1" DecPoint="" Remark="Torque" />
+      <PLCData ItemID="ST150:.ST150B_Angle" IsKey="false" StationID="ST150B" DBFieldName="ST150_a" DBFieldType="1" DecPoint="" Remark="Angle" />
+      <PLCData ItemID="ST150:.ST150B_End" IsKey="false" StationID="ST150B" DBFieldName="" DBFieldType="" DecPoint="" Remark="工件完成" />
+    </RexrothDataList>
+  </L1>
+  <L2>
+    <PrinterList>
+      <!--Type=1表示卡钳打印机,CodeType=1表示打印一维条码-->
+      <Printer Name="CaliperPrinter" IPAddress="10.176.65.232" Type="1" CodeType="1" CountKey="C2" Remark="卡钳打印机" />
+      <!--Type=1表示支架打印机,CodeType=2表示打印二维条码-->
+      <Printer Name="BrakePrinter" IPAddress="10.176.65.233" Type="2" CodeType="1" CountKey="B2" Remark="支架打印机" />
+    </PrinterList>
+    <ScannerList>
+      <!--IO6报警、IO5红灯、IO4绿灯、-->
+      <Scanner StationID="ST115" ComPort="3" ComSet="115200,n,8,1" LightIOPort="0" LineType="1" BarCodeItemID="" EnableTraceSysItemID="ST115:.EnableTraceSys" Remark="" />
+      <Scanner StationID="ST230" ComPort="4" ComSet="115200,n,8,1" LightIOPort="2" LineType="1" BarCodeItemID="ST230.BarCode" EnableTraceSysItemID="ST230.EnableTraceSys"  Remark="" />
+	  <Scanner StationID="ST320" ComPort="9" ComSet="115200,n,8,1" LightIOPort="6" LineType="2" BarCodeItemID="ST340.ST320_BarCode" EnableTraceSysItemID=""  Remark="" />
+      <Scanner StationID="ST330" ComPort="6" ComSet="115200,n,8,1" LightIOPort="1" LineType="2" BarCodeItemID="ST340.ST330_BarCode" EnableTraceSysItemID="ST340.EnableTraceSys"  Remark="" />
+      <Scanner StationID="ST400" ComPort="8" ComSet="115200,n,8,1" LightIOPort="3" LineType="2" BarCodeItemID="ST400.ControlProductIn" EnableTraceSysItemID="" Remark=""/>
+      <Scanner StationID="ST290_In" ComPort="5" ComSet="115200,n,8,1" LightIOPort="9" LineType="2" BarCodeItemID="" EnableTraceSysItemID="" Remark="摩擦片扫描器(内侧)"/>
+      <Scanner StationID="ST290_Out" ComPort="7" ComSet="115200,n,8,1" LightIOPort="9" LineType="2" BarCodeItemID="" EnableTraceSysItemID="" Remark="摩擦片扫描器(外侧)"/>
+    </ScannerList>
+    <PLCDataList>
+      <!--ST100-->
+      <PLCData ItemID="ST100.EnableTraceSys" IsKey="false"  StationID="ST100" DBFieldName="" DBFieldType="" DecPoint="" Remark="" />
+      <PLCData ItemID="ST100.PrintIO" IsKey="false"  StationID="ST100" DBFieldName="" DBFieldType="" DecPoint="" Remark="" />
+	  <PLCData ItemID="ST100.AlarmPrintErr" IsKey="false"  StationID="ST100" DBFieldName="" DBFieldType="" DecPoint="" Remark="" />
+	  <PLCData ItemID="ST100.AlarmTraceServerClose" IsKey="false"  StationID="ST100" DBFieldName="" DBFieldType="" DecPoint="" Remark="" />
+	  <!--ST150-->
+      <PLCData ItemID="ST150.BarCode" IsKey="true" StationID="ST150" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST150.Complete" IsKey="false" StationID="ST150" DBFieldName="" DBFieldType="" DecPoint="" Remark="" />
+      <PLCData ItemID="ST150.Torque" IsKey="false" StationID="ST150" DBFieldName="st150_t" DBFieldType="1" DecPoint="5" Remark="Torque" />
+      <PLCData ItemID="ST150.Angle" IsKey="false" StationID="ST150" DBFieldName="st150_a" DBFieldType="1" DecPoint="4" Remark="Angle" />
+      <PLCData ItemID="ST150.ControlPass" IsKey="false"  StationID="ST150" DBFieldName="" DBFieldType="" DecPoint="" Remark="控制工件放行" />
+      <PLCData ItemID="ST150.EnableTraceSys" IsKey="false" StationID="ST150" DBFieldName="" DBFieldType="" DecPoint="" Remark="" />
+      <!--ST160-->
+      <PLCData ItemID="ST160.EnableTraceSys" IsKey="false" StationID="ST160" DBFieldName="" DBFieldType="" DecPoint="" Remark="" />
+      <!--ST160A-->
+      <PLCData ItemID="ST160.ABarCode" IsKey="true" StationID="ST160A" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST160.ALeakage" IsKey="false" StationID="ST160A" DBFieldName="st160" DBFieldType="1" DecPoint="" Remark="ST160A工位检测Leakage结果" />
+      <PLCData ItemID="ST160.AComplete" IsKey="false" StationID="ST160A" DBFieldName="" DBFieldType="" DecPoint="" Remark="工件检测完成" />
+      <!--ST160B-->
+      <PLCData ItemID="ST160.BBarCode" IsKey="true" StationID="ST160B" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST160.BLeakage" IsKey="false" StationID="ST160B" DBFieldName="st160" DBFieldType="1" DecPoint="" Remark="ST160B检测Leakage结果" />
+      <PLCData ItemID="ST160.BComplete" IsKey="false" StationID="ST160B" DBFieldName="" DBFieldType="" DecPoint="" Remark="工件检测完成" />
+      <!--ST170-->
+      <PLCData ItemID="ST170.EnableTraceSys" IsKey="false" StationID="ST170" DBFieldName="" DBFieldType="" DecPoint="" Remark="" />      
+      <!--ST170A-->
+      <PLCData ItemID="ST170.ABarCode" IsKey="true" StationID="ST170A" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST170.ALeakage" IsKey="false" StationID="ST170A" DBFieldName="st170" DBFieldType="1" DecPoint="" Remark="ST170A工位检测Leakage结果" />
+      <PLCData ItemID="ST170.AComplete" IsKey="false" StationID="ST170A" DBFieldName="" DBFieldType="" DecPoint="" Remark="工件检测完成" />
+      <!--ST170B-->
+      <PLCData ItemID="ST170.BBarCode" IsKey="true" StationID="ST170B" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST170.BLeakage" IsKey="false" StationID="ST170B" DBFieldName="st170" DBFieldType="1" DecPoint="" Remark="ST170B检测Leakage结果" />
+      <PLCData ItemID="ST170.BComplete" IsKey="false" StationID="ST170B" DBFieldName="" DBFieldType="" DecPoint="" Remark="工件检测完成" />
+      <!--ST177-->
+      <PLCData ItemID="ST177.BarCode" IsKey="true" StationID="ST177" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST177.Leakage" IsKey="false" StationID="ST177" DBFieldName="st177" DBFieldType="1" DecPoint="" Remark="ST177检测Leakage结果" />
+      <PLCData ItemID="ST177.Complete" IsKey="false" StationID="ST177" DBFieldName="" DBFieldType="" DecPoint="" Remark="工件检测完成" />
+      <!--ST176力士乐PLC-->
+      <!--ST177-->
+      <!--<PLCData ItemID="ST177.BarCode" IsKey="true" StationID="ST177" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST177.Leakage" IsKey="false" StationID="ST177" DBFieldName="st177" DBFieldType="1" DecPoint="" Remark="ST177检测Leakage结果" />
+      <PLCData ItemID="ST177.Complete" IsKey="false" StationID="ST177" DBFieldName="" DBFieldType="" DecPoint="" Remark="工件检测完成" />
+      <PLCData ItemID="ST177.EnableTraceSys" IsKey="false" StationID="ST177" DBFieldName="" DBFieldType="" DecPoint="" Remark="" />-->
+      <!--ST180-->
+      <PLCData ItemID="ST180.BarCode" IsKey="true" StationID="ST180" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />            
+      <!--<PLCData ItemID="ST180.ST123_PF" IsKey="false" StationID="ST180" DBFieldName="st123" DBFieldType="1" DecPoint="" Remark="123工位PF值" />-->
+      <PLCData ItemID="ST180.ST124_PF" IsKey="false" StationID="ST180" DBFieldName="st124_pf" DBFieldType="1" DecPoint="" Remark="124工位PF值" />
+      <PLCData ItemID="ST180.ST180_PF" IsKey="false" StationID="ST180" DBFieldName="st180" DBFieldType="1" DecPoint="" Remark="180工位PF值" />
+      <PLCData ItemID="ST180.ST115_PF" IsKey="false" StationID="ST180" DBFieldName="st115_pf" DBFieldType="1" DecPoint="" Remark="115工位PF值" />
+      <!--<PLCData ItemID="ST180.ST140_Stroke" IsKey="false" StationID="ST180" DBFieldName="st140" DBFieldType="1" DecPoint="" Remark="" />
+      <PLCData ItemID="ST180.ST160_Leakage" IsKey="false" StationID="ST180" DBFieldName="st160" DBFieldType="1" DecPoint="" Remark="" />
+      <PLCData ItemID="ST180.ST170_Leakage" IsKey="false" StationID="ST180" DBFieldName="st170" DBFieldType="1" DecPoint="" Remark="" />
+      <PLCData ItemID="ST180.ST176_Leakage" IsKey="false" StationID="ST180" DBFieldName="st176" DBFieldType="1" DecPoint="" Remark="" />-->
+      <!--<PLCData ItemID="ST180.ST177_Force" IsKey="false" StationID="ST180" DBFieldName="st177" DBFieldType="1" DecPoint="" Remark="" />-->
+      <PLCData ItemID="ST180.Complete" IsKey="false" StationID="ST180" DBFieldName="" DBFieldType="" DecPoint="" Remark="工件已完成" />
+      <PLCData ItemID="ST180.ControlPass" IsKey="false"  StationID="ST180" DBFieldName="" DBFieldType="" DecPoint="" Remark="控制工件放行" />
+      <PLCData ItemID="ST180.EnableTraceSys" IsKey="false" StationID="ST180" DBFieldName="" DBFieldType="" DecPoint="" Remark="" />
+      <!--ST230-->      
+      <PLCData ItemID="ST230.BarCode" IsKey="true"  StationID="ST230" DBFieldName="brakecode" DBFieldType="2" DecPoint="" Remark="支架号" />
+      <PLCData ItemID="ST230.EnableTraceSys" IsKey="false"  StationID="ST230" DBFieldName="" DBFieldType="" DecPoint="" Remark="" />
+      <PLCData ItemID="ST230.PrintIO" IsKey="false"  StationID="ST230" DBFieldName="" DBFieldType="" DecPoint="" Remark="" />
+      <PLCData ItemID="ST230.WriteCode" IsKey="false"  StationID="ST230" DBFieldName="" DBFieldType="" DecPoint="" Remark="" />
+	  <PLCData ItemID="ST230.AlarmPrintErr" IsKey="false"  StationID="ST230" DBFieldName="" DBFieldType="" DecPoint="" Remark="" />
+	  <PLCData ItemID="ST230.AlarmTraceServerClose" IsKey="false"  StationID="ST230" DBFieldName="" DBFieldType="" DecPoint="" Remark="" />
+	  <!--ST290-->
+      <PLCData ItemID="ST290.EnableTraceSys" IsKey="false"  StationID="ST290" DBFieldName="" DBFieldType="" DecPoint="" Remark="" />
+      <PLCData ItemID="ST290.Complete" IsKey="false"  StationID="ST290" DBFieldName="" DBFieldType="" DecPoint="" Remark="" />
+      <PLCData ItemID="ST290.ST230_PF" IsKey="false" StationID="ST290" DBFieldName="st230" DBFieldType="1" DecPoint="" Remark="230工位PF值" />
+      <PLCData ItemID="ST290.ST240_PF" IsKey="false" StationID="ST290" DBFieldName="st240" DBFieldType="1" DecPoint="" Remark="240工位PF值" />
+      <PLCData ItemID="ST290.ST250_PF" IsKey="false" StationID="ST290" DBFieldName="st250" DBFieldType="1" DecPoint="" Remark="250工位PF值" />
+      <PLCData ItemID="ST290.ST260_PF" IsKey="false" StationID="ST290" DBFieldName="st260" DBFieldType="1" DecPoint="" Remark="260工位PF值" />
+      <PLCData ItemID="ST290.ST290_PF" IsKey="false" StationID="ST290" DBFieldName="st290" DBFieldType="1" DecPoint="" Remark="290工位PF值" />
+      <PLCData ItemID="ST290.ST310_PF" IsKey="false" StationID="ST290" DBFieldName="st310" DBFieldType="1" DecPoint="" Remark="310工位PF值" />
+      <PLCData ItemID="ST290.ControlPass" IsKey="false"  StationID="ST290" DBFieldName="" DBFieldType="" DecPoint="" Remark="" />
+      <PLCData ItemID="ST290.Alarm" IsKey="false"  StationID="ST290" DBFieldName="" DBFieldType="" DecPoint="" Remark="" />
+	  <!--ST320-->
+	  <PLCData ItemID="ST340.ST320_BarCode" IsKey="true"  StationID="ST320" DBFieldName="brakecode" DBFieldType="2" DecPoint="" Remark="支架号" />
+	  <PLCData ItemID="ST340.ST320_WriteCode" IsKey="false"  StationID="ST320" DBFieldName="" DBFieldType="" DecPoint="" Remark="" />		
+      <!--ST330-->
+      <PLCData ItemID="ST340.ST330_BarCode" IsKey="true"  StationID="ST330" DBFieldName="brakecode" DBFieldType="2" DecPoint="" Remark="支架号" />
+      <PLCData ItemID="ST340.ST330_ControlPass" IsKey="false"  StationID="ST330" DBFieldName="" DBFieldType="" DecPoint="" Remark="控制工件放行" />
+	  <PLCData ItemID="ST340.ST330_AlarmPackageErr" IsKey="false"  StationID="ST330" DBFieldName="" DBFieldType="" DecPoint="" Remark="" />
+	  <!--ST340-->
+      <PLCData ItemID="ST340.BarCode" IsKey="True" StationID="ST340" DBFieldName="brakecode" DBFieldType="2" DecPoint="" Remark="支架流水号" />
+      <PLCData ItemID="ST340.Torque1" IsKey="false"  StationID="ST340" DBFieldName="st340_t1" DBFieldType="1" DecPoint="5" Remark="Torque" />
+      <PLCData ItemID="ST340.Angle1" IsKey="false"  StationID="ST340" DBFieldName="st340_a1" DBFieldType="1" DecPoint="4" Remark="Angle" />
+      <PLCData ItemID="ST340.Torque2" IsKey="false"  StationID="ST340" DBFieldName="st340_t2" DBFieldType="1" DecPoint="5" Remark="Torque" />
+      <PLCData ItemID="ST340.Angle2" IsKey="false"  StationID="ST340" DBFieldName="st340_a2" DBFieldType="1" DecPoint="4" Remark="Angle" />
+      <PLCData ItemID="ST340.Complete" IsKey="false"  StationID="ST340" DBFieldName="" DBFieldType="" DecPoint="" Remark="工件完成" />
+      <PLCData ItemID="ST340.ControlPass" IsKey="false"  StationID="ST340" DBFieldName="" DBFieldType="" DecPoint="" Remark="控制工件放行" />
+      <PLCData ItemID="ST340.EnableTraceSys" IsKey="false"  StationID="ST340" DBFieldName="" DBFieldType="" DecPoint="" Remark="" />
+      <!--ST360-->
+      <PLCData ItemID="ST360.BarCode" IsKey="true" StationID="ST360" DBFieldName="brakecode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <!--以下8个Item虽然在PLC中没有使用，通过以太网采集的数据，不可以注释和删除，因为在判断数据完整性有引用到-->
+      <PLCData ItemID="ST360.XMinX1" IsKey="false"  StationID="ST360" DBFieldName="st360_xminx1" DBFieldType="1" DecPoint="" Remark="" />
+      <PLCData ItemID="ST360.XMinY1" IsKey="false"  StationID="ST360" DBFieldName="st360_xminy1" DBFieldType="1" DecPoint="" Remark="" />
+      <PLCData ItemID="ST360.XMaxX1" IsKey="false"  StationID="ST360" DBFieldName="st360_xmaxx1" DBFieldType="1" DecPoint="" Remark="" />
+      <PLCData ItemID="ST360.XMaxY1" IsKey="false"  StationID="ST360" DBFieldName="st360_xmaxy1" DBFieldType="1" DecPoint="" Remark="" />
+      <PLCData ItemID="ST360.YMinX1" IsKey="false"  StationID="ST360" DBFieldName="st360_yminx1" DBFieldType="1" DecPoint="" Remark="" />
+      <PLCData ItemID="ST360.YMinY1" IsKey="false"  StationID="ST360" DBFieldName="st360_yminy1" DBFieldType="1" DecPoint="" Remark="" />
+      <PLCData ItemID="ST360.YMaxX1" IsKey="false"  StationID="ST360" DBFieldName="st360_ymaxx1" DBFieldType="1" DecPoint="" Remark="" />
+      <PLCData ItemID="ST360.YMaxY1" IsKey="false"  StationID="ST360" DBFieldName="st360_ymaxy1" DBFieldType="1" DecPoint="" Remark="" />
+      <PLCData ItemID="ST360.Complete" IsKey="false"  StationID="ST360" DBFieldName="" DBFieldType="" DecPoint="" Remark="工件完成" />
+      <PLCData ItemID="ST360.ControlPass" IsKey="false"  StationID="ST360" DBFieldName="" DBFieldType="" DecPoint="" Remark="控制工件放行" />
+	  <PLCData ItemID="ST360.ProductType" IsKey="false" StationID="ST360" DBFieldName="" DBFieldType="" DecPoint="" Remark="产品类型" />
+      <PLCData ItemID="ST360.EnableTraceSys" IsKey="false"  StationID="ST360" DBFieldName="" DBFieldType="" DecPoint="" Remark="" />
+      <!--ST400-->
+      <PLCData ItemID="ST400.BarCode" IsKey="true" StationID="ST400" DBFieldName="brakecode" DBFieldType="2" DecPoint="" Remark="支架流水号brakecode" />
+      <PLCData ItemID="ST400.BracketCode" IsKey="false" StationID="ST400" DBFieldName="bracketcode" DBFieldType="2" DecPoint="" Remark="总成号" />
+      <PLCData ItemID="ST400.PLCBracket" IsKey="false" StationID="ST400" DBFieldName="" DBFieldType="" DecPoint="" Remark="PLC的刻蚀码" />
+      <PLCData ItemID="ST400.ProductType" IsKey="false" StationID="ST400" DBFieldName="" DBFieldType="" DecPoint="" Remark="产品类型" />
+      <PLCData ItemID="ST400.Marking" IsKey="false" StationID="ST400" DBFieldName="" DBFieldType="" DecPoint="" Remark="控制刻蚀机工作" />
+      <PLCData ItemID="ST400.ST230_PF" IsKey="false" StationID="ST400" DBFieldName="st230" DBFieldType="1" DecPoint="" Remark="230工位PF值" />
+      <PLCData ItemID="ST400.ST240_PF" IsKey="false" StationID="ST400" DBFieldName="st240" DBFieldType="1" DecPoint="" Remark="240工位PF值" />
+      <PLCData ItemID="ST400.ST250_PF" IsKey="false" StationID="ST400" DBFieldName="st250" DBFieldType="1" DecPoint="" Remark="250工位PF值" />
+      <PLCData ItemID="ST400.ST260_PF" IsKey="false" StationID="ST400" DBFieldName="st260" DBFieldType="1" DecPoint="" Remark="260工位PF值" />
+      <PLCData ItemID="ST400.ST290_PF" IsKey="false" StationID="ST400" DBFieldName="st290" DBFieldType="1" DecPoint="" Remark="290工位PF值" />
+      <PLCData ItemID="ST400.ST310_PF" IsKey="false" StationID="ST400" DBFieldName="st310" DBFieldType="1" DecPoint="" Remark="310工位PF值" />
+      <PLCData ItemID="ST400.ST320_PF" IsKey="false" StationID="ST400" DBFieldName="st320" DBFieldType="1" DecPoint="" Remark="320工位PF值" />
+      <PLCData ItemID="ST400.ST361_PF" IsKey="false" StationID="ST400" DBFieldName="st361" DBFieldType="1" DecPoint="" Remark="361工位PF值" />
+      <PLCData ItemID="ST400.ST370_PF" IsKey="false" StationID="ST400" DBFieldName="st370" DBFieldType="1" DecPoint="" Remark="370工位PF值" />
+      <PLCData ItemID="ST400.ST390_PF" IsKey="false" StationID="ST400" DBFieldName="st390" DBFieldType="1" DecPoint="" Remark="390工位PF值" />
+      <PLCData ItemID="ST400.Complete" IsKey="false" StationID="ST400" DBFieldName="" DBFieldType="" DecPoint="" Remark="工件已进入工位，流水号与PF值已读取完成" />
+      <PLCData ItemID="ST400.ControlProductIn" IsKey="false" StationID="ST400" DBFieldName="" DBFieldType="" DecPoint="" Remark="ST440扫描完条码后控制挡点下降，让设备进入工位" />
+      <PLCData ItemID="ST400.EnableTraceSys" IsKey="false"  StationID="ST400" DBFieldName="" DBFieldType="" DecPoint="" Remark="" />
+	  <PLCData ItemID="ST400.AlarmBarCodeCheckErr" IsKey="false"  StationID="ST400" DBFieldName="" DBFieldType="" DecPoint="" Remark="" />
+	  <PLCData ItemID="ST400.AlarmReadMarkingErr" IsKey="false"  StationID="ST400" DBFieldName="" DBFieldType="" DecPoint="" Remark="" />
+	  <PLCData ItemID="ST400.AlarmWriteMarkingErr" IsKey="false"  StationID="ST400" DBFieldName="" DBFieldType="" DecPoint="" Remark="" />
+	  <PLCData ItemID="ST400.AlarmResultNOK" IsKey="false"  StationID="ST400" DBFieldName="" DBFieldType="" DecPoint="" Remark="" />
+    </PLCDataList>
+    <RexrothDataList>
+      <!--ST115-->
+      <PLCData ItemID="ST115:.BarCode_1" IsKey="true" StationID="ST115" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST115:.BarCode_2" IsKey="true" StationID="ST115" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST115:.BarCode_3" IsKey="true" StationID="ST115" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST115:.BarCode_4" IsKey="true" StationID="ST115" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST115:.BarCode_5" IsKey="true" StationID="ST115" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST115:.BarCode_6" IsKey="true" StationID="ST115" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST115:.BarCode_7" IsKey="true" StationID="ST115" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST115:.BarCode_8" IsKey="true" StationID="ST115" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST115:.BarCode_9" IsKey="true" StationID="ST115" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST115:.BarCode_10" IsKey="true" StationID="ST115" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST115:.BarCode_11" IsKey="true" StationID="ST115" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST115:.BarCode_12" IsKey="true" StationID="ST115" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST115:.Z10Handl" IsKey="false" StationID="ST115" DBFieldName="" DBFieldType="" DecPoint="" Remark="" />
+      <PLCData ItemID="ST115:.RetourCoteFinaleAxe" IsKey="false" StationID="ST115" DBFieldName="st115_fa" DBFieldType="1" DecPoint="" Remark="CrimpingDimension（push插入高度）" />
+      <PLCData ItemID="ST115:.ValeurParametre_49_EffortSertissage.Valeur" IsKey="false" StationID="ST115" DBFieldName="st115_fc" DBFieldType="1" DecPoint="" Remark="ForceCrimping" />		
+      <PLCData ItemID="ST115:.NextProduction.EMS_Code" IsKey="false" StationID="ST115" DBFieldName="" DBFieldType="" DecPoint="" Remark="产品编号" />
+      <PLCData ItemID="ST115:.ST115_Complete" IsKey="false" StationID="ST115" DBFieldName="" DBFieldType="" DecPoint="" Remark="" />      
+      <PLCData ItemID="ST115:.EnableTraceSys" IsKey="false" StationID="ST115" DBFieldName="" DBFieldType="" DecPoint="" Remark="" />
+      <!--<PLCData ItemID="ST115:.Stroke" IsKey="false" StationID="ST115" DBFieldName="st115" DBFieldType="1" DecPoint="" Remark="Stroke" />-->
+      <!--ST124-->
+      <PLCData ItemID="ST124:.BarCode_1" IsKey="true" StationID="ST124" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST124:.BarCode_2" IsKey="true" StationID="ST124" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST124:.BarCode_3" IsKey="true" StationID="ST124" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST124:.BarCode_4" IsKey="true" StationID="ST124" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST124:.BarCode_5" IsKey="true" StationID="ST124" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST124:.BarCode_6" IsKey="true" StationID="ST124" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST124:.BarCode_7" IsKey="true" StationID="ST124" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST124:.BarCode_8" IsKey="true" StationID="ST124" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST124:.BarCode_9" IsKey="true" StationID="ST124" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST124:.BarCode_10" IsKey="true" StationID="ST124" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST124:.BarCode_11" IsKey="true" StationID="ST124" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST124:.BarCode_12" IsKey="true" StationID="ST124" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST124:.gVisuAxeEmmanchementCoteFinale" IsKey="false" StationID="ST124" DBFieldName="st124_fd" DBFieldType="1" DecPoint="" Remark="FinalDimension（最终位置）" />
+      <PLCData ItemID="ST124:.gVisuAxeEmmanchementPositionFmaxJoint" IsKey="false" StationID="ST124" DBFieldName="st124_po" DBFieldType="1" DecPoint="" Remark="PositionOring(最高位置)" />
+      <PLCData ItemID="ST124:.gVisuAxeEmmanchementEffortJoint" IsKey="false" StationID="ST124" DBFieldName="st124_fo" DBFieldType="1" DecPoint="" Remark="FmaxOring（活塞插入最大力）" />
+      <PLCData ItemID="ST124:.ST124_Complete" IsKey="false" StationID="ST124" DBFieldName="" DBFieldType="" DecPoint="" Remark="卡钳流水号" />
+      <!--ST176-->
+      <PLCData ItemID="ST176:.BarCode_1" IsKey="true" StationID="ST176" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST176:.BarCode_2" IsKey="true" StationID="ST176" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST176:.BarCode_3" IsKey="true" StationID="ST176" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST176:.BarCode_4" IsKey="true" StationID="ST176" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST176:.BarCode_5" IsKey="true" StationID="ST176" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST176:.BarCode_6" IsKey="true" StationID="ST176" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST176:.BarCode_7" IsKey="true" StationID="ST176" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST176:.BarCode_8" IsKey="true" StationID="ST176" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST176:.BarCode_9" IsKey="true" StationID="ST176" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST176:.BarCode_10" IsKey="true" StationID="ST176" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST176:.BarCode_11" IsKey="true" StationID="ST176" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST176:.BarCode_12" IsKey="true" StationID="ST176" DBFieldName="calipercode" DBFieldType="2" DecPoint="" Remark="卡钳流水号" />
+      <PLCData ItemID="ST176:.gVisulabviewCoupleSerrage" IsKey="false" StationID="ST176" DBFieldName="st176_tt" DBFieldType="1" DecPoint="" Remark="TightTorque" />
+      <PLCData ItemID="ST176:.gVisulabviewEffortSerrage" IsKey="false" StationID="ST176" DBFieldName="st176_tf" DBFieldType="1" DecPoint="" Remark="TightForce" />
+      <PLCData ItemID="ST176:.gVisulabviewCouple_A_Vide" IsKey="false" StationID="ST176" DBFieldName="st176_ta" DBFieldType="1" DecPoint="" Remark="TorqueAIdle" />
+      <PLCData ItemID="ST176:.ST176_Complete" IsKey="false" StationID="ST176" DBFieldName="" DBFieldType="" DecPoint="" Remark="卡钳流水号" />
+      <!--ST362-->
+      <PLCData ItemID="ST362:.BarCode_1" IsKey="true" StationID="ST362" DBFieldName="brakecode" DBFieldType="2" DecPoint="" Remark="支架号" />
+      <PLCData ItemID="ST362:.BarCode_2" IsKey="true" StationID="ST362" DBFieldName="brakecode" DBFieldType="2" DecPoint="" Remark="支架号" />
+      <PLCData ItemID="ST362:.BarCode_3" IsKey="true" StationID="ST362" DBFieldName="brakecode" DBFieldType="2" DecPoint="" Remark="支架号" />
+      <PLCData ItemID="ST362:.BarCode_4" IsKey="true" StationID="ST362" DBFieldName="brakecode" DBFieldType="2" DecPoint="" Remark="支架号" />
+      <PLCData ItemID="ST362:.BarCode_5" IsKey="true" StationID="ST362" DBFieldName="brakecode" DBFieldType="2" DecPoint="" Remark="支架号" />
+      <PLCData ItemID="ST362:.BarCode_6" IsKey="true" StationID="ST362" DBFieldName="brakecode" DBFieldType="2" DecPoint="" Remark="支架号" />
+      <PLCData ItemID="ST362:.BarCode_7" IsKey="true" StationID="ST362" DBFieldName="brakecode" DBFieldType="2" DecPoint="" Remark="支架号" />
+      <PLCData ItemID="ST362:.BarCode_8" IsKey="true" StationID="ST362" DBFieldName="brakecode" DBFieldType="2" DecPoint="" Remark="支架号" />
+      <PLCData ItemID="ST362:.BarCode_9" IsKey="true" StationID="ST362" DBFieldName="brakecode" DBFieldType="2" DecPoint="" Remark="支架号" />
+      <PLCData ItemID="ST362:.BarCode_10" IsKey="true" StationID="ST362" DBFieldName="brakecode" DBFieldType="2" DecPoint="" Remark="支架号" />
+      <PLCData ItemID="ST362:.BarCode_11" IsKey="true" StationID="ST362" DBFieldName="brakecode" DBFieldType="2" DecPoint="" Remark="支架号" />
+      <PLCData ItemID="ST362:.BarCode_12" IsKey="true" StationID="ST362" DBFieldName="brakecode" DBFieldType="2" DecPoint="" Remark="支架号" />
+      <PLCData ItemID="ST362:.Histo.Palette.St01.CodeDmx" IsKey="false" StationID="ST362" DBFieldName="st362_m" DBFieldType="2" DecPoint="" Remark="MGU" />
+      <PLCData ItemID="ST362:.VissKE350.Value1Torq" IsKey="false" StationID="ST362" DBFieldName="st362_t1" DBFieldType="1" DecPoint="" Remark="Torque1" />
+      <PLCData ItemID="ST362:.VissKE350.Value2Torq" IsKey="false" StationID="ST362" DBFieldName="st362_t2" DBFieldType="1" DecPoint="" Remark="Torque2" />
+      <PLCData ItemID="ST362:.VissKE350.Value1Angl" IsKey="false" StationID="ST362" DBFieldName="st362_a1" DBFieldType="1" DecPoint="" Remark="Angle1" />
+      <PLCData ItemID="ST362:.VissKE350.Value2Angl" IsKey="false" StationID="ST362" DBFieldName="st362_a2" DBFieldType="1" DecPoint="" Remark="Angle2" />
+      <!--<PLCData ItemID="ST362:.Promess.VarLue[1]" IsKey="false" StationID="ST362" DBFieldName="st362_p" DBFieldType="1" DecPoint="" Remark="TorquePressMax" />-->
+      <PLCData ItemID="ST362:.Promess.VarLue[1]" IsKey="false" StationID="ST362" DBFieldName="st362_p1" DBFieldType="1" DecPoint="" Remark="TorquePressMax" />
+      <PLCData ItemID="ST362:.Promess.VarLue[3]" IsKey="false" StationID="ST362" DBFieldName="st362_p2" DBFieldType="1" DecPoint="" Remark="TorqueOringMax" />
+      <!--Promess.VarLue[1]==st362_p1,TorquePressMax-->
+      <!--Promess.VarLue[3]==st362_p2,TorqueOringMax-->
+      <PLCData ItemID="ST362:.ST362_Complete" IsKey="false" StationID="ST362" DBFieldName="" DBFieldType="" DecPoint="" Remark="支架号" />
+      <!--ST363A-->
+      <PLCData ItemID="ST363:.ABarCode_1" IsKey="true" StationID="ST363A" DBFieldName="brakecode" DBFieldType="2" DecPoint="" Remark="支架号" />
+      <PLCData ItemID="ST363:.ABarCode_2" IsKey="true" StationID="ST363A" DBFieldName="brakecode" DBFieldType="2" DecPoint="" Remark="支架号" />
+      <PLCData ItemID="ST363:.ABarCode_3" IsKey="true" StationID="ST363A" DBFieldName="brakecode" DBFieldType="2" DecPoint="" Remark="支架号" />
+      <PLCData ItemID="ST363:.ABarCode_4" IsKey="true" StationID="ST363A" DBFieldName="brakecode" DBFieldType="2" DecPoint="" Remark="支架号" />
+      <PLCData ItemID="ST363:.ABarCode_5" IsKey="true" StationID="ST363A" DBFieldName="brakecode" DBFieldType="2" DecPoint="" Remark="支架号" />
+      <PLCData ItemID="ST363:.ABarCode_6" IsKey="true" StationID="ST363A" DBFieldName="brakecode" DBFieldType="2" DecPoint="" Remark="支架号" />
+      <PLCData ItemID="ST363:.ABarCode_7" IsKey="true" StationID="ST363A" DBFieldName="brakecode" DBFieldType="2" DecPoint="" Remark="支架号" />
+      <PLCData ItemID="ST363:.ABarCode_8" IsKey="true" StationID="ST363A" DBFieldName="brakecode" DBFieldType="2" DecPoint="" Remark="支架号" />
+      <PLCData ItemID="ST363:.ABarCode_9" IsKey="true" StationID="ST363A" DBFieldName="brakecode" DBFieldType="2" DecPoint="" Remark="支架号" />
+      <PLCData ItemID="ST363:.ABarCode_10" IsKey="true" StationID="ST363A" DBFieldName="brakecode" DBFieldType="2" DecPoint="" Remark="支架号" />
+      <PLCData ItemID="ST363:.ABarCode_11" IsKey="true" StationID="ST363A" DBFieldName="brakecode" DBFieldType="2" DecPoint="" Remark="支架号" />
+      <PLCData ItemID="ST363:.ABarCode_12" IsKey="true" StationID="ST363A" DBFieldName="brakecode" DBFieldType="2" DecPoint="" Remark="支架号" />
+      <PLCData ItemID="ST363:.ES_PcLabview.i_diTCaleI_Idle" IsKey="false" StationID="ST363A" DBFieldName="st363_c" DBFieldType="1" DecPoint="3" Remark="Current" />
+      <PLCData ItemID="ST363:.ES_PcLabview.i_diTCale_Course" IsKey="false" StationID="ST363A" DBFieldName="st363_d" DBFieldType="1" DecPoint="3" Remark="Distance" />
+	  <PLCData ItemID="ST363:.ES_PcLabview.i_diTCale_Ts" IsKey="false" StationID="ST363A" DBFieldName="st363_intime" DBFieldType="1" DecPoint="3" Remark="TighteningTime(DefaultValue)" />
+	  <PLCData ItemID="ST363:.ES_PcLabview.i_diTCale_Tr" IsKey="false" StationID="ST363A" DBFieldName="st363_outtime" DBFieldType="1" DecPoint="3" Remark="UntighteningTime(DefaultValue)" />
+      <PLCData ItemID="ST363:.ST363_AComplete" IsKey="false" StationID="ST363A" DBFieldName="" DBFieldType="" DecPoint="" Remark="" />
+      <!--ST363B为影像工位，不采集数据-->
+      <!--<PLCData ItemID="ST363:.BBarCode_1" IsKey="true" StationID="ST363B" DBFieldName="brakecode" DBFieldType="2" DecPoint="" Remark="支架号" />
+      <PLCData ItemID="ST363:.BBarCode_2" IsKey="true" StationID="ST363B" DBFieldName="brakecode" DBFieldType="2" DecPoint="" Remark="支架号" />
+      <PLCData ItemID="ST363:.BBarCode_3" IsKey="true" StationID="ST363B" DBFieldName="brakecode" DBFieldType="2" DecPoint="" Remark="支架号" />
+      <PLCData ItemID="ST363:.BBarCode_4" IsKey="true" StationID="ST363B" DBFieldName="brakecode" DBFieldType="2" DecPoint="" Remark="支架号" />
+      <PLCData ItemID="ST363:.BBarCode_5" IsKey="true" StationID="ST363B" DBFieldName="brakecode" DBFieldType="2" DecPoint="" Remark="支架号" />
+      <PLCData ItemID="ST363:.BBarCode_6" IsKey="true" StationID="ST363B" DBFieldName="brakecode" DBFieldType="2" DecPoint="" Remark="支架号" />
+      <PLCData ItemID="ST363:.BBarCode_7" IsKey="true" StationID="ST363B" DBFieldName="brakecode" DBFieldType="2" DecPoint="" Remark="支架号" />
+      <PLCData ItemID="ST363:.BBarCode_8" IsKey="true" StationID="ST363B" DBFieldName="brakecode" DBFieldType="2" DecPoint="" Remark="支架号" />
+      <PLCData ItemID="ST363:.BBarCode_9" IsKey="true" StationID="ST363B" DBFieldName="brakecode" DBFieldType="2" DecPoint="" Remark="支架号" />
+      <PLCData ItemID="ST363:.BBarCode_10" IsKey="true" StationID="ST363B" DBFieldName="brakecode" DBFieldType="2" DecPoint="" Remark="支架号" />
+      <PLCData ItemID="ST363:.BBarCode_11" IsKey="true" StationID="ST363B" DBFieldName="brakecode" DBFieldType="2" DecPoint="" Remark="支架号" />
+      <PLCData ItemID="ST363:.BBarCode_12" IsKey="true" StationID="ST363B" DBFieldName="brakecode" DBFieldType="2" DecPoint="" Remark="支架号" />
+      <PLCData ItemID="ST363:.ES_PcLabview.o_diParTCale_IIdleMax" IsKey="false" StationID="ST363B" DBFieldName="ST363_c" DBFieldType="1" DecPoint="" Remark="Current" />
+      <PLCData ItemID="ST363:.ES_PcLabview.o_diParTCale_CourseMax" IsKey="false" StationID="ST363B" DBFieldName="ST363_d" DBFieldType="1" DecPoint="" Remark="Distance" />
+      <PLCData ItemID="ST363:.ST363_BComplete" IsKey="false" StationID="ST363B" DBFieldName="" DBFieldType="" DecPoint="" Remark="" />-->
+    </RexrothDataList>
+    </L2>
+</Root>

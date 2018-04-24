@@ -1,0 +1,185 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{9A0A8C88-1296-41AC-8FA6-3B6C0069ECEC}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CBIPanelManager</RootNamespace>
+    <AssemblyName>CBIPanelManager</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>CBIIcon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Config\NoticeConfigForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Config\NoticeConfigForm.Designer.cs">
+      <DependentUpon>NoticeConfigForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Config\ProductionInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Config\ProductionInfo.Designer.cs">
+      <DependentUpon>ProductionInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Config\UserCfgForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Config\UserCfgForm.Designer.cs">
+      <DependentUpon>UserCfgForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Config\UserInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Config\UserInfo.Designer.cs">
+      <DependentUpon>UserInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PlaninfoItemForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PlaninfoItemForm.Designer.cs">
+      <DependentUpon>PlaninfoItemForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Plan\BrakePlanAppointments.cs" />
+    <Compile Include="PLinePlanForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PLinePlanForm.Designer.cs">
+      <DependentUpon>PLinePlanForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Config\ProductionCfgForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Config\ProductionCfgForm.Designer.cs">
+      <DependentUpon>ProductionCfgForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportMangerFrom.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportMangerFrom.Designer.cs">
+      <DependentUpon>ReportMangerFrom.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Config\NoticeConfigForm.resx">
+      <DependentUpon>NoticeConfigForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Config\ProductionInfo.resx">
+      <DependentUpon>ProductionInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Config\UserCfgForm.resx">
+      <DependentUpon>UserCfgForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Config\UserInfo.resx">
+      <DependentUpon>UserInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PlaninfoItemForm.en-US.resx">
+      <DependentUpon>PlaninfoItemForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PlaninfoItemForm.resx">
+      <DependentUpon>PlaninfoItemForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PLinePlanForm.resx">
+      <DependentUpon>PLinePlanForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Config\ProductionCfgForm.resx">
+      <DependentUpon>ProductionCfgForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportMangerFrom.resx">
+      <DependentUpon>ReportMangerFrom.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\COM\COM.csproj">
+      <Project>{67672095-7784-4E12-B245-E5C910364E00}</Project>
+      <Name>COM</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DAL\DAL.csproj">
+      <Project>{5A2DF0DF-D0AE-4260-B9C9-A7F9C879A59E}</Project>
+      <Name>DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MDL\MDL.csproj">
+      <Project>{6E98D26B-CBD3-4A06-A800-6A56AD0AF7FF}</Project>
+      <Name>MDL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ScheduleControls\ScheduleControls.csproj">
+      <Project>{50A9C32A-2246-420C-9388-7B1728D0BA8F}</Project>
+      <Name>ScheduleControls</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App.xml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="CBIIcon.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
